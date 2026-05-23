@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAWAS — Radiator Manufacturer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F7FF;
+    --primary: #27187E;
+    --primary-rgb: 39,24,126;
+    --accent: #4B3FCC;
+    --soft: #E8E8FF;
+    --glass-border: rgba(39,24,126,0.15);
+    --text: #0d0d2b;
+    --text-muted: #6b6b8a;
+    --radius: 20px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* ── CURSOR (desktop only) ── */
+  .cursor-dot, .cursor-ring { display: none; }
+  @media (hover: hover) and (pointer: fine) {
+    .cursor-dot {
+      display: block;
+      width: 8px; height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%);
+    }
+    .cursor-ring {
+      display: block;
+      width: 36px; height: 36px;
+      border: 1.5px solid rgba(var(--primary-rgb),.4);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: width .3s, height .3s, border-color .3s;
+    }
+    body { cursor: none; }
+  }
+
+  /* ── NOISE ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9997; opacity: .5;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 16px 48px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    transition: background .4s, box-shadow .4s;
+  }
+  nav.scrolled {
+    background: rgba(247,247,255,.82);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 1px 0 rgba(var(--primary-rgb),.1);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px; font-weight: 800;
+    color: var(--primary); letter-spacing: -1px;
+    text-decoration: none; flex-shrink: 0;
+  }
+  .nav-links {
+    display: flex; gap: 2px;
+    background: rgba(var(--primary-rgb),.06);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    border-radius: 50px; padding: 5px 7px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--primary); text-decoration: none;
+    font-size: 14px; font-weight: 500;
+    padding: 7px 16px; border-radius: 50px;
+    transition: background .2s, color .2s; white-space: nowrap;
+  }
+  .nav-links a:hover { background: var(--primary); color: #fff; }
+
+  .nav-right {
+    display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+  }
+  .lang-switcher {
+    display: flex; gap: 2px;
+    background: rgba(var(--primary-rgb),.06);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px; padding: 4px;
+  }
+  .lang-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 500; color: var(--text-muted);
+    background: none; border: none;
+    padding: 5px 9px; border-radius: 50px;
+    cursor: pointer; transition: all .2s;
+  }
+  .lang-btn.active, .lang-btn:hover { background: var(--primary); color: #fff; }
+  .btn-order {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500;
+    background: var(--primary); color: #fff; border: none;
+    padding: 9px 22px; border-radius: 50px; cursor: pointer;
+    transition: transform .2s, box-shadow .2s, background .2s;
+    text-decoration: none; white-space: nowrap;
+  }
+  .btn-order:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(var(--primary-rgb),.35); background: var(--accent); }
+
+  /* Hamburger */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--primary); border-radius: 2px;
+    transition: transform .3s, opacity .3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile menu */
+  .mobile-menu {
+    display: none; position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+    background: rgba(247,247,255,.97);
+    backdrop-filter: blur(20px);
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; padding: 24px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 700;
+    color: var(--primary); text-decoration: none; padding: 10px 0;
+    border-bottom: 1px solid var(--glass-border); width: 100%; text-align: center;
+    transition: opacity .2s;
+  }
+  .mobile-menu a:hover { opacity: .6; }
+  .mobile-lang { display: flex; gap: 8px; margin-top: 24px; }
+  .mobile-lang .lang-btn { font-size: 16px; padding: 8px 16px; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100svh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 100px 24px 60px;
+    text-align: center;
+  }
+  .orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); opacity: .5;
+    will-change: transform; pointer-events: none;
+  }
+  .orb-1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(var(--primary-rgb),.18) 0%, transparent 70%); top: -100px; left: -150px; }
+  .orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(75,63,204,.14) 0%, transparent 70%); bottom: -80px; right: -100px; }
+  .orb-3 { width: 350px; height: 350px; background: radial-gradient(circle, rgba(var(--primary-rgb),.1) 0%, transparent 70%); top: 40%; left: 50%; transform: translate(-50%,-50%); }
+  .grid-lines {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(var(--primary-rgb),.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--primary-rgb),.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 40%, transparent 100%);
+  }
+
+  /* Hero tag — fixed: nowrap + smaller on mobile */
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(var(--primary-rgb),.08);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px; padding: 6px 16px;
+    font-size: 13px; font-weight: 500; color: var(--primary);
+    margin-bottom: 28px; white-space: nowrap;
+    animation: fadeUp .8s ease both;
+    max-width: 100%; overflow: hidden; text-overflow: ellipsis;
+  }
+  .hero-tag .dot { width: 6px; height: 6px; background: #4ddb70; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(48px, 10vw, 110px);
+    font-weight: 800; line-height: .95;
+    color: var(--primary); letter-spacing: -3px;
+    animation: fadeUp .8s .15s ease both;
+  }
+  h1 em { font-style: normal; background: linear-gradient(135deg, var(--accent), #8B5CF6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-sub {
+    max-width: 540px; font-size: clamp(15px, 2vw, 18px); line-height: 1.6;
+    color: var(--text-muted); margin: 24px auto 0;
+    animation: fadeUp .8s .3s ease both;
+  }
+  .hero-cta {
+    display: flex; gap: 12px; margin-top: 40px; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp .8s .45s ease both;
+  }
+  .btn-primary {
+    font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
+    background: var(--primary); color: #fff; border: none;
+    padding: 13px 30px; border-radius: 50px; cursor: pointer;
+    text-decoration: none; transition: transform .2s, box-shadow .2s;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(var(--primary-rgb),.35); }
+  .btn-ghost {
+    font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
+    background: transparent; color: var(--primary);
+    border: 1.5px solid var(--glass-border);
+    padding: 13px 30px; border-radius: 50px; cursor: pointer;
+    text-decoration: none; transition: border-color .2s, background .2s;
+  }
+  .btn-ghost:hover { border-color: var(--primary); background: rgba(var(--primary-rgb),.06); }
+
+  .hero-stats {
+    display: flex; gap: 16px; margin-top: 56px; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp .8s .6s ease both;
+  }
+  .stat-card {
+    background: rgba(var(--primary-rgb),.05);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    border-radius: 16px; padding: 16px 24px; text-align: center;
+    min-width: 100px;
+  }
+  .stat-card strong { display: block; font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: var(--primary); letter-spacing: -1px; }
+  .stat-card span { font-size: 12px; color: var(--text-muted); }
+  .scroll-hint { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 11px; color: var(--text-muted); letter-spacing: .08em; animation: fadeUp 1s .9s ease both; }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--primary), transparent); animation: scrollLine 1.8s ease-in-out infinite; }
+  @keyframes scrollLine { 0%,100%{ opacity:.2 } 50%{ opacity:1 } }
+
+  /* ── SECTIONS ── */
+  .section-wrap { padding: 100px 48px; }
+  .section-label { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--primary); opacity: .6; margin-bottom: 14px; }
+  h2 { font-family: 'Syne', sans-serif; font-size: clamp(32px, 5vw, 60px); font-weight: 800; letter-spacing: -2px; color: var(--primary); line-height: 1; }
+
+  /* ── ABOUT ── */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; max-width: 1100px; margin: 0 auto; }
+  .about-visual { position: relative; }
+  .about-blob {
+    width: 100%; aspect-ratio: 1;
+    background: linear-gradient(135deg, rgba(var(--primary-rgb),.12), rgba(75,63,204,.08));
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation: blobMorph 8s ease-in-out infinite;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--glass-border);
+  }
+  @keyframes blobMorph { 0%,100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; } }
+  .about-icon-wrap { font-size: 72px; text-align: center; }
+  .about-badge {
+    position: absolute; bottom: 20px; right: -16px;
+    background: var(--primary); color: #fff;
+    border-radius: 14px; padding: 12px 18px;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; line-height: 1.3;
+    box-shadow: 0 12px 32px rgba(var(--primary-rgb),.3);
+  }
+  .about-badge span { font-size: 26px; font-weight: 800; display: block; }
+  .about-text h2 { margin-bottom: 18px; }
+  .about-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 14px; font-size: 15px; }
+  .about-features { list-style: none; margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+  .about-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text); }
+  .about-features li::before { content: '✦'; color: var(--primary); font-size: 9px; flex-shrink: 0; }
+
+  /* ── PRODUCTS ── */
+  .products-header { text-align: center; margin-bottom: 48px; max-width: 1100px; margin-left: auto; margin-right: auto; }
+  .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+  .product-card {
+    background: rgba(var(--primary-rgb),.04);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius); overflow: hidden;
+    cursor: pointer; transition: transform .3s, box-shadow .3s, border-color .3s;
+    position: relative;
+  }
+  .product-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(var(--primary-rgb),.06), transparent); opacity: 0; transition: opacity .3s; }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(var(--primary-rgb),.14); border-color: rgba(var(--primary-rgb),.3); }
+  .product-card:hover::before { opacity: 1; }
+  .product-thumb { height: 180px; background: linear-gradient(135deg, rgba(var(--primary-rgb),.1), rgba(75,63,204,.06)); display: flex; align-items: center; justify-content: center; font-size: 64px; }
+  .product-body { padding: 20px; }
+  .product-name { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+  .product-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 14px; }
+  .product-specs { display: flex; gap: 6px; flex-wrap: wrap; }
+  .product-spec-tag { background: rgba(var(--primary-rgb),.08); color: var(--primary); font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 50px; }
+  .product-arrow { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; background: var(--primary); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; opacity: 0; transform: scale(.6); transition: opacity .3s, transform .3s; }
+  .product-card:hover .product-arrow { opacity: 1; transform: scale(1); }
+
+  /* ── MODAL ── */
+  .modal-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(13,13,43,.6); backdrop-filter: blur(12px); display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity .3s; }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal { background: var(--bg); border: 1px solid var(--glass-border); border-radius: 24px; max-width: 520px; width: 100%; padding: 36px; transform: translateY(20px) scale(.97); transition: transform .3s; position: relative; max-height: 90svh; overflow-y: auto; }
+  .modal-overlay.open .modal { transform: none; }
+  .modal-close { position: absolute; top: 16px; right: 16px; width: 34px; height: 34px; background: rgba(var(--primary-rgb),.08); border: none; border-radius: 50%; cursor: pointer; font-size: 16px; color: var(--primary); display: flex; align-items: center; justify-content: center; transition: background .2s; }
+  .modal-close:hover { background: var(--primary); color: #fff; }
+  .modal-icon { font-size: 56px; margin-bottom: 16px; text-align: center; }
+  .modal h3 { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: var(--primary); margin-bottom: 10px; }
+  .modal p { color: var(--text-muted); line-height: 1.7; margin-bottom: 18px; font-size: 14px; }
+  .modal-specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+  .modal-spec { background: rgba(var(--primary-rgb),.06); border-radius: 10px; padding: 12px; }
+  .modal-spec-label { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted); margin-bottom: 3px; }
+  .modal-spec-val { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--primary); }
+  .modal-cta { display: flex; gap: 10px; }
+  .modal-cta .btn-ghost { cursor: pointer; }
+
+  /* ── CONTACT FORM ── */
+  .contact-wrap { max-width: 760px; margin: 0 auto; }
+  .contact-wrap h2 { margin-bottom: 12px; }
+  .contact-lead { color: var(--text-muted); font-size: 17px; line-height: 1.7; margin-bottom: 44px; }
+  .contact-form-card {
+    background: rgba(var(--primary-rgb),.04);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px; padding: 48px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+  .form-group label { font-size: 13px; font-weight: 500; color: var(--primary); letter-spacing: .02em; }
+  .form-group input,
+  .form-group textarea {
+    font-family: 'DM Sans', sans-serif; font-size: 15px;
+    background: rgba(var(--primary-rgb),.04);
+    border: 1.5px solid var(--glass-border);
+    border-radius: 12px; padding: 13px 16px;
+    color: var(--text); outline: none;
+    transition: border-color .2s, background .2s;
+    width: 100%;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--primary); background: rgba(var(--primary-rgb),.07); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-submit {
+    width: 100%; padding: 15px; border-radius: 50px;
+    font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700;
+    background: var(--primary); color: #fff; border: none; cursor: pointer;
+    transition: transform .2s, box-shadow .2s, background .2s;
+    margin-top: 8px;
+  }
+  .form-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(var(--primary-rgb),.32); background: var(--accent); }
+  .form-success {
+    display: none; text-align: center; padding: 32px;
+    font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700;
+    color: var(--primary);
+  }
+  .form-success .success-icon { font-size: 52px; margin-bottom: 12px; }
+
+  .contact-info { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 28px; }
+  .contact-info-item { background: rgba(var(--primary-rgb),.05); border: 1px solid var(--glass-border); border-radius: 14px; padding: 18px; text-align: center; }
+  .ci-icon { font-size: 26px; margin-bottom: 6px; }
+  .ci-label { font-size: 11px; color: var(--text-muted); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 3px; }
+  .ci-val { font-size: 13px; font-weight: 500; color: var(--primary); }
+
+  /* ── FOOTER ── */
+  footer { border-top: 1px solid var(--glass-border); padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  .footer-logo { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: var(--primary); }
+  .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+  .footer-links a { color: var(--text-muted); font-size: 14px; text-decoration: none; transition: color .2s; }
+  .footer-links a:hover { color: var(--primary); }
+  .footer-copy { font-size: 13px; color: var(--text-muted); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .nav-right .lang-switcher { display: none; }
+    .nav-right .btn-order { padding: 8px 16px; font-size: 13px; }
+    .hamburger { display: flex; }
+
+    #home { padding: 90px 20px 60px; }
+    .hero-tag { font-size: 11px; padding: 5px 12px; }
+
+    .section-wrap { padding: 72px 20px; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    .about-badge { right: 0; }
+
+    .form-row { grid-template-columns: 1fr; }
+    .contact-form-card { padding: 28px 20px; }
+    .contact-info { grid-template-columns: 1fr; }
+
+    footer { flex-direction: column; text-align: center; padding: 28px 20px; }
+    .footer-links { justify-content: center; }
+
+    h2 { letter-spacing: -1px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-stats { gap: 10px; }
+    .stat-card { padding: 12px 16px; }
+    .stat-card strong { font-size: 22px; }
+    .hero-tag { white-space: normal; text-align: center; }
+    .products-grid { grid-template-columns: 1fr; }
+    .modal { padding: 24px 18px; }
+    .modal-specs-grid { grid-template-columns: 1fr; }
+    .modal-cta { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">NAWAS</a>
+  <ul class="nav-links">
+    <li><a href="#home" data-i="nav_home">Главная</a></li>
+    <li><a href="#about" data-i="nav_about">О нас</a></li>
+    <li><a href="#products" data-i="nav_products">Продукция</a></li>
+    <li><a href="#contact" data-i="nav_contact">Контакты</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn" onclick="setLang('uz')">UZ</button>
+      <button class="lang-btn active" onclick="setLang('ru')">RU</button>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+    </div>
+    <a href="#contact" class="btn-order" data-i="btn_order">Заказать</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="closeMenu()" data-i="nav_home">Главная</a>
+  <a href="#about" onclick="closeMenu()" data-i="nav_about">О нас</a>
+  <a href="#products" onclick="closeMenu()" data-i="nav_products">Продукция</a>
+  <a href="#contact" onclick="closeMenu()" data-i="nav_contact">Контакты</a>
+  <div class="mobile-lang">
+    <button class="lang-btn" onclick="setLang('uz');closeMenu()">UZ</button>
+    <button class="lang-btn active" id="mobileLangRu" onclick="setLang('ru');closeMenu()">RU</button>
+    <button class="lang-btn" onclick="setLang('zh');closeMenu()">中文</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="orb orb-1" id="orb1"></div>
+  <div class="orb orb-2" id="orb2"></div>
+  <div class="orb orb-3" id="orb3"></div>
+  <div class="grid-lines"></div>
+  <div class="hero-tag"><span class="dot"></span> <span data-i="hero_tag">с 2010 года</span></div>
+  <h1>NAWAS<br><em>Radiators</em></h1>
+  <p class="hero-sub" data-i="hero_sub">Высококачественные алюминиевые и биметаллические радиаторы для промышленных и жилых объектов.</p>
+  <div class="hero-cta">
+    <a href="#products" class="btn-primary" data-i="hero_cta1">Наша продукция</a>
+    <a href="#contact" class="btn-ghost" data-i="hero_cta2">Связаться</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card reveal"><strong>15+</strong><span data-i="stat1">лет опыта</span></div>
+    <div class="stat-card reveal"><strong>500+</strong><span data-i="stat2">клиентов</span></div>
+    <div class="stat-card reveal"><strong>50k+</strong><span data-i="stat3">единиц/год</span></div>
+    <div class="stat-card reveal"><strong>3</strong><span data-i="stat4">страны</span></div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div><span data-i="scroll">прокрутите</span></div>
+</section>
+
+<!-- ABOUT -->
+<section style="background: linear-gradient(180deg, var(--bg) 0%, var(--soft) 100%);">
+  <div class="section-wrap" style="padding-top:100px;padding-bottom:100px;">
+    <div class="about-grid" id="about">
+      <div class="about-visual reveal">
+        <div class="about-blob"><div class="about-icon-wrap">🏭</div></div>
+        <div class="about-badge"><span>2010</span><span data-i="about_badge">год основания</span></div>
+      </div>
+      <div class="about-text reveal">
+        <span class="section-label" data-i="about_label">О компании</span>
+        <h2 data-i="about_title">Надёжный партнёр в теплоснабжении</h2>
+        <p data-i="about_p1">NAWAS — узбекский завод по производству радиаторов с полным производственным циклом. Мы выпускаем алюминиевые, биметаллические и стальные радиаторы.</p>
+        <p data-i="about_p2">Наши производственные мощности позволяют выполнять крупные заказы в кратчайшие сроки, а контроль качества на каждом этапе гарантирует долговечность.</p>
+        <ul class="about-features">
+          <li data-i="feat1">Сертифицированное производство ISO 9001</li>
+          <li data-i="feat2">Собственная лаборатория контроля качества</li>
+          <li data-i="feat3">Гарантия до 15 лет</li>
+          <li data-i="feat4">Индивидуальные решения под проект</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" class="section-wrap">
+  <div class="products-header reveal">
+    <span class="section-label" data-i="prod_label">Продукция</span>
+    <h2 data-i="prod_title">Наши радиаторы</h2>
+  </div>
+  <div class="products-grid" id="productGrid"></div>
+</section>
+
+<!-- CONTACT -->
+<section style="background: linear-gradient(180deg, var(--bg) 0%, var(--soft) 100%);">
+  <div class="section-wrap" id="contact">
+    <div class="contact-wrap">
+      <span class="section-label reveal" data-i="contact_label">Контакты</span>
+      <h2 class="reveal" data-i="contact_title">Свяжитесь с нами</h2>
+      <p class="contact-lead reveal" data-i="contact_lead">Оставьте заявку — мы свяжемся с вами в течение рабочего дня.</p>
+
+      <div class="contact-form-card reveal">
+        <div id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label data-i="form_name_label">Ваше имя</label>
+              <input type="text" id="fname" data-i-ph="form_name_ph" placeholder="Иван Иванов" autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label data-i="form_phone_label">Номер телефона</label>
+              <input type="tel" id="fphone" data-i-ph="form_phone_ph" placeholder="+998 90 000 00 00" autocomplete="tel">
+            </div>
+          </div>
+          <div class="form-group">
+            <label data-i="form_msg_label">Сообщение</label>
+            <textarea id="fmsg" data-i-ph="form_msg_ph" placeholder="Опишите ваш запрос или вопрос..."></textarea>
+          </div>
+          <button class="form-submit" onclick="submitForm()" data-i="form_submit">Отправить заявку</button>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">✅</div>
+          <div data-i="form_success_msg">Заявка принята! Мы свяжемся с вами в ближайшее время.</div>
+        </div>
+      </div>
+
+      <div class="contact-info reveal">
+        <div class="contact-info-item">
+          <div class="ci-icon">📍</div>
+          <div class="ci-label" data-i="addr_label">Адрес</div>
+          <div class="ci-val" data-i="addr_val">Ташкент, Узбекистан</div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon">🕐</div>
+          <div class="ci-label" data-i="hours_label">Режим работы</div>
+          <div class="ci-val" data-i="hours_val">Пн–Пт, 9:00–18:00</div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon">📞</div>
+          <div class="ci-label" data-i="phone_label">Телефон</div>
+          <div class="ci-val">+998 71 000 00 00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">NAWAS</div>
+  <ul class="footer-links">
+    <li><a href="#home" data-i="nav_home">Главная</a></li>
+    <li><a href="#about" data-i="nav_about">О нас</a></li>
+    <li><a href="#products" data-i="nav_products">Продукция</a></li>
+    <li><a href="#contact" data-i="nav_contact">Контакты</a></li>
+  </ul>
+  <div class="footer-copy" data-i="footer_copy">© 2025 NAWAS. Все права защищены.</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <div class="modal-icon" id="modalIcon"></div>
+    <h3 id="modalName"></h3>
+    <p id="modalDesc"></p>
+    <div class="modal-specs-grid" id="modalSpecs"></div>
+    <div class="modal-cta">
+      <a href="#contact" class="btn-primary" style="flex:1;text-align:center;" onclick="closeModalBtn()" data-i="modal_order">Оставить заявку</a>
+      <button onclick="closeModalBtn()" class="btn-ghost" data-i="modal_close">Закрыть</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const T = {
+  ru: {
+    nav_home:'Главная', nav_about:'О нас', nav_products:'Продукция', nav_contact:'Контакты',
+    btn_order:'Заказать', hero_tag:'Производство радиаторов с 2010 г.',
+    hero_sub:'Высококачественные алюминиевые и биметаллические радиаторы для промышленных и жилых объектов.',
+    hero_cta1:'Наша продукция', hero_cta2:'Связаться',
+    stat1:'лет опыта', stat2:'клиентов', stat3:'единиц/год', stat4:'страны',
+    scroll:'прокрутите', about_badge:'год основания',
+    about_label:'О компании', about_title:'Надёжный партнёр в теплоснабжении',
+    about_p1:'NAWAS — узбекский завод по производству радиаторов с полным производственным циклом.',
+    about_p2:'Наши производственные мощности позволяют выполнять крупные заказы в кратчайшие сроки.',
+    feat1:'Сертифицированное производство ISO 9001', feat2:'Собственная лаборатория контроля качества',
+    feat3:'Гарантия до 15 лет', feat4:'Индивидуальные решения под проект',
+    prod_label:'Продукция', prod_title:'Наши радиаторы',
+    contact_label:'Контакты', contact_title:'Свяжитесь с нами',
+    contact_lead:'Оставьте заявку — мы свяжемся с вами в течение рабочего дня.',
+    form_name_label:'Ваше имя', form_name_ph:'Иван Иванов',
+    form_phone_label:'Номер телефона', form_phone_ph:'+998 90 000 00 00',
+    form_msg_label:'Сообщение', form_msg_ph:'Опишите ваш запрос или вопрос...',
+    form_submit:'Отправить заявку', form_success_msg:'Заявка принята! Мы свяжемся с вами в ближайшее время.',
+    addr_label:'Адрес', addr_val:'Ташкент, Узбекистан',
+    hours_label:'Режим работы', hours_val:'Пн–Пт, 9:00–18:00',
+    phone_label:'Телефон',
+    footer_copy:'© 2025 NAWAS. Все права защищены.',
+    modal_order:'Оставить заявку', modal_close:'Закрыть',
+    products:[
+      {name:'Алюминиевый радиатор',desc:'Лёгкий, быстро нагревается, идеален для автономных систем с низким давлением.',icon:'🌡️',specs:[{l:'Мощность',v:'140–190 Вт'},{l:'Давление',v:'до 16 бар'},{l:'Высота',v:'350–600 мм'},{l:'Гарантия',v:'10 лет'}],tags:['Алюминий','Быстрый нагрев','Лёгкий']},
+      {name:'Биметаллический радиатор',desc:'Сталь + алюминий. Высокое рабочее давление, устойчивость к некачественному теплоносителю.',icon:'⚙️',specs:[{l:'Мощность',v:'170–210 Вт'},{l:'Давление',v:'до 35 бар'},{l:'Высота',v:'350–500 мм'},{l:'Гарантия',v:'15 лет'}],tags:['Биметалл','Высокое давление','Надёжный']},
+      {name:'Стальной панельный',desc:'Классика для квартир и офисов. Равномерный обогрев, эстетичный вид.',icon:'🔧',specs:[{l:'Мощность',v:'400–2000 Вт'},{l:'Давление',v:'до 10 бар'},{l:'Тип',v:'11/21/22'},{l:'Гарантия',v:'10 лет'}],tags:['Сталь','Панельный','Универсальный']},
+      {name:'Промышленный радиатор',desc:'Для объектов с экстремальными условиями: высокое давление, агрессивная среда.',icon:'🏗️',specs:[{l:'Мощность',v:'до 5 кВт'},{l:'Давление',v:'до 60 бар'},{l:'Темп.',v:'до 130°C'},{l:'Гарантия',v:'5 лет'}],tags:['Промышленный','Высокая мощность']},
+      {name:'Дизайн-радиатор',desc:'Стильное решение для современных интерьеров. Горизонтальные и вертикальные модели.',icon:'✨',specs:[{l:'Мощность',v:'300–800 Вт'},{l:'Давление',v:'до 10 бар'},{l:'Цвет',v:'RAL на выбор'},{l:'Гарантия',v:'10 лет'}],tags:['Дизайн','Интерьер','RAL']},
+      {name:'Конвектор',desc:'Принудительная конвекция для быстрого прогрева больших помещений.',icon:'💨',specs:[{l:'Мощность',v:'500–3000 Вт'},{l:'Вентилятор',v:'3 скорости'},{l:'Шум',v:'< 35 дБ'},{l:'Гарантия',v:'7 лет'}],tags:['Конвектор','Быстро','Эффективно']},
+    ]
+  },
+  uz: {
+    nav_home:'Bosh sahifa', nav_about:'Biz haqimizda', nav_products:'Mahsulotlar', nav_contact:'Aloqa',
+    btn_order:'Buyurtma', hero_tag:'2010 yildan radiator ishlab chiqarish',
+    hero_sub:'Sanoat va turar joy ob\'ektlari uchun yuqori sifatli alyuminiy va biometall radiatorlar.',
+    hero_cta1:'Mahsulotlar', hero_cta2:'Bog\'lanish',
+    stat1:'yillik tajriba', stat2:'mijozlar', stat3:'birlik/yil', stat4:'davlat',
+    scroll:'aylantiring', about_badge:'asos solingan yil',
+    about_label:'Kompaniya haqida', about_title:'Issiqlik ta\'minotida ishonchli hamkor',
+    about_p1:'NAWAS — to\'liq ishlab chiqarish tsikliga ega o\'zbek radiator zavodi.',
+    about_p2:'Ishlab chiqarish quvvatimiz katta buyurtmalarni qisqa muddatda bajarishga imkon beradi.',
+    feat1:'ISO 9001 sertifikatlangan', feat2:'O\'z sifat nazorati laboratoriyasi',
+    feat3:'15 yilgacha kafolat', feat4:'Individual yechimlar',
+    prod_label:'Mahsulotlar', prod_title:'Radiatorlarimiz',
+    contact_label:'Aloqa', contact_title:'Biz bilan bog\'laning',
+    contact_lead:'Ariza qoldiring — biz ish kuni davomida siz bilan bog\'lanamiz.',
+    form_name_label:'Ismingiz', form_name_ph:'Abdullayev Akbar',
+    form_phone_label:'Telefon raqami', form_phone_ph:'+998 90 000 00 00',
+    form_msg_label:'Xabar', form_msg_ph:'Savolingizni yozing...',
+    form_submit:'Ariza yuborish', form_success_msg:'Ariza qabul qilindi! Tez orada siz bilan bog\'lanamiz.',
+    addr_label:'Manzil', addr_val:'Toshkent, O\'zbekiston',
+    hours_label:'Ish vaqti', hours_val:'Du–Ju, 9:00–18:00',
+    phone_label:'Telefon',
+    footer_copy:'© 2025 NAWAS. Barcha huquqlar himoyalangan.',
+    modal_order:'Ariza qoldirish', modal_close:'Yopish',
+    products:[
+      {name:'Alyuminiy radiator',desc:'Yengil, tez isiydi, past bosimli avtonom isitish tizimlari uchun ideal.',icon:'🌡️',specs:[{l:'Quvvat',v:'140–190 Vt'},{l:'Bosim',v:'16 bar'},{l:'Balandlik',v:'350–600 mm'},{l:'Kafolat',v:'10 yil'}],tags:['Alyuminiy','Tez isish','Yengil']},
+      {name:'Biometall radiator',desc:'Po\'lat + alyuminiy. Yuqori ish bosimi, past sifatli issiqlik tashuvchiga chidamlilik.',icon:'⚙️',specs:[{l:'Quvvat',v:'170–210 Vt'},{l:'Bosim',v:'35 bar'},{l:'Balandlik',v:'350–500 mm'},{l:'Kafolat',v:'15 yil'}],tags:['Biometall','Yuqori bosim','Ishonchli']},
+      {name:'Po\'lat panel radiator',desc:'Kvartiralar va ofislar uchun klassik yechim.',icon:'🔧',specs:[{l:'Quvvat',v:'400–2000 Vt'},{l:'Bosim',v:'10 bar'},{l:'Turi',v:'11/21/22'},{l:'Kafolat',v:'10 yil'}],tags:['Po\'lat','Panel','Universal']},
+      {name:'Sanoat radiatori',desc:'Ekstremal sharoitlar uchun: yuqori bosim, agressiv muhit.',icon:'🏗️',specs:[{l:'Quvvat',v:'5 kVt'},{l:'Bosim',v:'60 bar'},{l:'Harorat',v:'130°C'},{l:'Kafolat',v:'5 yil'}],tags:['Sanoat','Yuqori quvvat']},
+      {name:'Dizayn radiator',desc:'Zamonaviy interyer uchun uslubiy yechim.',icon:'✨',specs:[{l:'Quvvat',v:'300–800 Vt'},{l:'Bosim',v:'10 bar'},{l:'Rang',v:'RAL'},{l:'Kafolat',v:'10 yil'}],tags:['Dizayn','Interyer','RAL']},
+      {name:'Konvektor',desc:'Katta xonalarni tez isitish uchun majburiy konveksiya.',icon:'💨',specs:[{l:'Quvvat',v:'500–3000 Vt'},{l:'Ventilyator',v:'3 tezlik'},{l:'Shovqin',v:'< 35 dB'},{l:'Kafolat',v:'7 yil'}],tags:['Konvektor','Tez','Samarali']},
+    ]
+  },
+  zh: {
+    nav_home:'首页', nav_about:'关于我们', nav_products:'产品', nav_contact:'联系我们',
+    btn_order:'订购', hero_tag:'自2010年生产散热器',
+    hero_sub:'为工业和住宅提供高质量铝制和双金属散热器，经久耐用。',
+    hero_cta1:'产品系列', hero_cta2:'联系我们',
+    stat1:'年经验', stat2:'客户', stat3:'件/年', stat4:'供货国',
+    scroll:'向下滚动', about_badge:'成立年份',
+    about_label:'关于公司', about_title:'供热领域的可靠合作伙伴',
+    about_p1:'NAWAS是一家拥有完整生产周期的乌兹别克斯坦散热器制造商。',
+    about_p2:'我们的生产能力可在最短时间内完成大型订单。',
+    feat1:'ISO 9001认证生产', feat2:'自有质量控制实验室',
+    feat3:'产品质保长达15年', feat4:'个性化解决方案',
+    prod_label:'产品系列', prod_title:'我们的散热器',
+    contact_label:'联系我们', contact_title:'与我们联系',
+    contact_lead:'提交申请 — 我们将在工作日内与您联系。',
+    form_name_label:'您的姓名', form_name_ph:'张三',
+    form_phone_label:'电话号码', form_phone_ph:'+998 90 000 00 00',
+    form_msg_label:'留言', form_msg_ph:'请描述您的需求...',
+    form_submit:'提交申请', form_success_msg:'申请已收到！我们将尽快与您联系。',
+    addr_label:'地址', addr_val:'乌兹别克斯坦塔什干',
+    hours_label:'工作时间', hours_val:'周一至周五 9:00–18:00',
+    phone_label:'电话',
+    footer_copy:'© 2025 NAWAS. 保留所有权利。',
+    modal_order:'提交申请', modal_close:'关闭',
+    products:[
+      {name:'铝制散热器',desc:'轻巧，加热迅速，适合低压自主供暖系统。',icon:'🌡️',specs:[{l:'功率',v:'140–190W'},{l:'压力',v:'16bar'},{l:'高度',v:'350–600mm'},{l:'质保',v:'10年'}],tags:['铝制','快速加热','轻巧']},
+      {name:'双金属散热器',desc:'钢+铝材质，高工作压力，耐受低质量热载体。',icon:'⚙️',specs:[{l:'功率',v:'170–210W'},{l:'压力',v:'35bar'},{l:'高度',v:'350–500mm'},{l:'质保',v:'15年'}],tags:['双金属','高压','可靠']},
+      {name:'钢制面板散热器',desc:'公寓和办公室的经典解决方案，均匀加热。',icon:'🔧',specs:[{l:'功率',v:'400–2000W'},{l:'压力',v:'10bar'},{l:'类型',v:'11/21/22'},{l:'质保',v:'10年'}],tags:['钢制','面板','通用']},
+      {name:'工业散热器',desc:'适用于极端条件：高压、腐蚀性环境。',icon:'🏗️',specs:[{l:'功率',v:'最高5kW'},{l:'压力',v:'60bar'},{l:'温度',v:'130°C'},{l:'质保',v:'5年'}],tags:['工业','大功率']},
+      {name:'设计散热器',desc:'现代室内设计的时尚解决方案。',icon:'✨',specs:[{l:'功率',v:'300–800W'},{l:'压力',v:'10bar'},{l:'颜色',v:'RAL定制'},{l:'质保',v:'10年'}],tags:['设计','室内','RAL']},
+      {name:'对流散热器',desc:'强制对流，快速加热大空间。',icon:'💨',specs:[{l:'功率',v:'500–3000W'},{l:'风扇',v:'3档'},{l:'噪音',v:'<35dB'},{l:'质保',v:'7年'}],tags:['对流','快速','高效']},
+    ]
+  }
+};
+
+let lang = 'ru';
+
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    const map = {'uz':0,'ru':1,'zh':2};
+    const order = b.closest('.mobile-lang') ? ['uz','ru','zh'] : ['uz','ru','zh'];
+    b.classList.toggle('active', b.textContent.trim() === ['UZ','RU','中文'][map[l]]);
+  });
+  document.querySelectorAll('[data-i]').forEach(el => {
+    const key = el.dataset.i;
+    if (T[l][key] !== undefined) el.textContent = T[l][key];
+  });
+  document.querySelectorAll('[data-i-ph]').forEach(el => {
+    const key = el.dataset.iPh;
+    if (T[l][key]) el.placeholder = T[l][key];
+  });
+  renderProducts();
+  updateLangBtns();
+}
+
+function updateLangBtns() {
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    const t = b.textContent.trim();
+    b.classList.toggle('active', (lang==='uz'&&t==='UZ')||(lang==='ru'&&t==='RU')||(lang==='zh'&&t==='中文'));
+  });
+}
+
+function renderProducts() {
+  const grid = document.getElementById('productGrid');
+  const prods = T[lang].products;
+  grid.innerHTML = prods.map((p, i) => `
+    <div class="product-card reveal" onclick="openModal(${i})">
+      <div class="product-arrow">→</div>
+      <div class="product-thumb">${p.icon}</div>
+      <div class="product-body">
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-specs">${p.tags.map(t=>`<span class="product-spec-tag">${t}</span>`).join('')}</div>
+      </div>
+    </div>
+  `).join('');
+  observeReveal();
+}
+
+function openModal(i) {
+  const p = T[lang].products[i];
+  document.getElementById('modalIcon').textContent = p.icon;
+  document.getElementById('modalName').textContent = p.name;
+  document.getElementById('modalDesc').textContent = p.desc;
+  document.getElementById('modalSpecs').innerHTML = p.specs.map(s=>`
+    <div class="modal-spec"><div class="modal-spec-label">${s.l}</div><div class="modal-spec-val">${s.v}</div></div>
+  `).join('');
+  document.querySelector('.modal-cta a').textContent = T[lang].modal_order;
+  document.querySelector('.modal-cta button').textContent = T[lang].modal_close;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(e) { if (e.target===document.getElementById('modalOverlay')) closeModalBtn(); }
+function closeModalBtn() { document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow=''; }
+
+function submitForm() {
+  const name = document.getElementById('fname').value.trim();
+  const phone = document.getElementById('fphone').value.trim();
+  if (!name || !phone) {
+    document.getElementById('fname').style.borderColor = name ? '' : '#e05';
+    document.getElementById('fphone').style.borderColor = phone ? '' : '#e05';
+    return;
+  }
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+
+// Mobile menu
+function toggleMenu() {
+  const h = document.getElementById('hamburger');
+  const m = document.getElementById('mobileMenu');
+  h.classList.toggle('open'); m.classList.toggle('open');
+  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Parallax (desktop)
+let mouseX=0, mouseY=0;
+document.addEventListener('mousemove', e => {
+  mouseX = (e.clientX/window.innerWidth-.5)*2;
+  mouseY = (e.clientY/window.innerHeight-.5)*2;
+  const o1=document.getElementById('orb1'), o2=document.getElementById('orb2'), o3=document.getElementById('orb3');
+  if(o1) o1.style.transform=`translate(${mouseX*28}px,${mouseY*18}px)`;
+  if(o2) o2.style.transform=`translate(${-mouseX*18}px,${-mouseY*14}px)`;
+  if(o3) o3.style.transform=`translate(calc(-50% + ${mouseX*14}px),calc(-50% + ${mouseY*9}px))`;
+});
+
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+function observeReveal() {
+  const els = document.querySelectorAll('.reveal:not(.visible)');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e,i) => {
+      if (e.isIntersecting) { setTimeout(()=>e.target.classList.add('visible'), i*70); obs.unobserve(e.target); }
+    });
+  }, {threshold:.1});
+  els.forEach(el => obs.observe(el));
+}
+
+// Cursor
+const dot=document.getElementById('cursorDot'), ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+if(dot && ring) {
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+  (function anim(){ dot.style.left=mx+'px'; dot.style.top=my+'px'; rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(anim); })();
+}
+
+renderProducts();
+observeReveal();
+</script>
+</body>
+</html>
