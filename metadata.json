@@ -1,0 +1,6 @@
+{
+  "name": "NAWAS Radiators",
+  "description": "Premium modern heating radiators with high thermal efficiency and modular design slider.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

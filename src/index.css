@@ -1,0 +1,620 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Syncopate:wght@400;700&family=DM+Sans:wght@700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-dm: "DM Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-syncopate: "Syncopate", sans-serif;
+
+  --color-neon-lime: var(--primary-lime);
+  --color-neon-lime-hover: var(--primary-lime-hover);
+  --color-dark-bg: var(--bg-dark);
+  --color-card-dark: var(--bg-card);
+  --color-border-dark: var(--border-dark);
+
+  /* Override standard Tailwind gray spectrums to dynamically map based on theme */
+  --color-gray-150: #efeff4;
+  --color-gray-200: var(--text-gray-200-raw);
+  --color-gray-300: var(--text-gray-300-raw);
+  --color-gray-400: var(--text-gray-400-raw);
+  --color-gray-500: var(--text-gray-500-raw);
+}
+
+:root {
+  /* ==================== DAY (LIGHT) THEME (DEFAULT) ==================== */
+  --primary-lime: #002045;       /* Darker lime green for perfect accessibility on white backdrop */
+  --primary-lime-hover: #003675; 
+  --primary-lime-glow: rgba(0, 32, 69, 0.4);
+  --primary-lime-soft: rgba(0, 32, 69, 0.25);
+  
+  --bg-dark: #f5f7fc;            /* Premium light silver-blue ambient canvas background */
+  --bg-card: rgba(255, 255, 255, 0.45); /* Premium glassmorphic cloud white card */
+  --border-dark: rgba(0, 32, 69, 0.12); /* Delicate translucent blue-tinted borders */
+  
+  --coral-accent: #dc2626;       /* High-contrast red */
+  --indigo-glow-soft: rgba(0, 32, 69, 0.06); 
+  --cyan-glow-soft: rgba(6, 182, 212, 0.05);   
+  
+  --text-white-raw: #091a44;     /* Flip white text to elegant deep charcoal */
+  --text-gray-200-raw: #1b253c;  /* Flip gray scales */
+  --text-gray-300-raw: #323d54;
+  --text-gray-400-raw: #4b5872;
+  --text-gray-500-raw: #76839d;
+  
+  --reflective-from: #002045;
+  --reflective-to: #4b5872;
+
+  --liquid-glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%);
+  --liquid-glass-border: rgba(0, 32, 69, 0.12);
+  --liquid-glass-inset-border: rgba(255, 255, 255, 0.7);
+  --liquid-glass-shadow: 0 4px 20px -5px rgba(0, 32, 69, 0.05);
+
+  --liquid-glass-active-bg: linear-gradient(135deg, rgba(0, 32, 69, 0.15) 0%, rgba(0, 32, 69, 0.05) 100%);
+  --liquid-glass-active-border: rgba(0, 32, 69, 0.4);
+}
+
+.dark {
+  /* ==================== NIGHT (DARK) THEME ==================== */
+  --primary-lime: #ccff00;       /* Original ultimate neon lime */
+  --primary-lime-hover: #b3e600; 
+  --primary-lime-glow: rgba(204, 255, 0, 0.4);
+  --primary-lime-soft: rgba(204, 255, 0, 0.15);
+  
+  --bg-dark: #050505;            /* Deep black/space */
+  --bg-card: #0d0d0d;            /* Cards deep dark grey */
+  --border-dark: #1f1f1f;        
+  
+  --coral-accent: #ff4d4d;       
+  --indigo-glow-soft: rgba(99, 102, 241, 0.15); 
+  --cyan-glow-soft: rgba(6, 182, 212, 0.15);   
+  
+  --text-white-raw: #ffffff;     /* Original pure white */
+  --text-gray-200-raw: #e5e7eb;
+  --text-gray-300-raw: #d1d5db;
+  --text-gray-400-raw: #9ca3af;
+  --text-gray-500-raw: #6b7280;
+  
+  --reflective-from: #ffffff;
+  --reflective-to: rgba(255, 255, 255, 0.1);
+
+  --liquid-glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+  --liquid-glass-border: rgba(255, 255, 255, 0.12);
+  --liquid-glass-inset-border: rgba(255, 255, 255, 0.15);
+  --liquid-glass-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+
+  --liquid-glass-active-bg: linear-gradient(135deg, rgba(204, 255, 0, 0.25) 0%, rgba(204, 255, 0, 0.08) 100%);
+  --liquid-glass-active-border: rgba(204, 255, 0, 0.5);
+}
+
+/* Base custom styles */
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-gray-200-raw);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom background ambient shapes */
+.ambient-glow-green {
+  background: radial-gradient(circle, var(--primary-lime-soft) 0%, rgba(0,0,0,0) 70%);
+}
+
+.ambient-glow-cyan {
+  background: radial-gradient(circle, var(--cyan-glow-soft) 0%, rgba(0,0,0,0) 70%);
+}
+
+.ambient-glow-indigo {
+  background: radial-gradient(circle, var(--indigo-glow-soft) 0%, rgba(0,0,0,0) 70%);
+}
+
+/* Slider glass effect */
+.glassmorphism {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-dark);
+}
+
+/* Liquid glass with minimal blur & gloss shine */
+.liquid-glass {
+  background: var(--liquid-glass-bg);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1.5px solid var(--liquid-glass-border);
+  box-shadow: var(--liquid-glass-shadow), 
+              inset 0 1px 2px var(--liquid-glass-inset-border),
+              0 0 15px rgba(204, 255, 0, 0.03);
+}
+
+/* Highly glossy neon-lime tinted liquid glass active pill */
+.liquid-glass-active {
+  background: var(--liquid-glass-active-bg);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1.2px solid var(--liquid-glass-active-border);
+  box-shadow: 0 4px 15px rgba(204, 255, 0, 0.15), 
+              inset 0 1px 1px rgba(255, 255, 255, 0.25);
+}
+
+/* Liquid glass container with blue specular highlights in light mode and lime highlights in dark mode */
+.liquid-glass-refractive {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.42) 0%, 
+    rgba(255, 255, 255, 0.16) 45%, 
+    rgba(255, 255, 255, 0.32) 100%
+  );
+  backdrop-filter: blur(28px) saturate(220%);
+  -webkit-backdrop-filter: blur(28px) saturate(220%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-top: 1.8px solid rgba(255, 255, 255, 0.85);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.65);
+  border-bottom: 1.2px solid rgba(29, 78, 216, 0.08);
+  border-right: 1.2px solid rgba(29, 78, 216, 0.08);
+  box-shadow: 
+    0 12px 35px -8px rgba(0, 0, 0, 0.08),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.85),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.03),
+    0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.dark .liquid-glass-refractive {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.07) 0%, 
+    rgba(255, 255, 255, 0.02) 45%, 
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(28px) saturate(220%);
+  -webkit-backdrop-filter: blur(28px) saturate(220%);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-top: 1.8px solid rgba(255, 255, 255, 0.28);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.18);
+  border-bottom: 1.2px solid rgba(0, 0, 0, 0.4);
+  border-right: 1.2px solid rgba(0, 0, 0, 0.4);
+  box-shadow: 
+    0 15px 45px -12px rgba(0, 0, 0, 0.65),
+    inset 0 1.2px 1.8px rgba(255, 255, 255, 0.22),
+    inset 0 -1.2px 1.5px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Liquid glass button styling */
+.liquid-glass-button {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.25) 100%);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.85);
+  border-left: 1.3px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.04),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.85);
+  transition: all 0.3s ease;
+}
+
+.liquid-glass-button:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.52) 100%);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 
+    0 8px 18px rgba(0, 0, 0, 0.07),
+    inset 0 1px 2.5px rgba(255, 255, 255, 0.95);
+  transform: translateY(-1.5px);
+}
+
+.dark .liquid-glass-button {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 100%);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1.4px solid rgba(255, 255, 255, 0.25);
+  border-left: 1.2px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.dark .liquid-glass-button:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(204, 255, 0, 0.08) 100%);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 8px 22px rgba(0, 0, 0, 0.35),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.3);
+  transform: translateY(-1.5px);
+}
+
+/* Text reflection effect for NAWAS logo */
+.reflective-text {
+  background: linear-gradient(to bottom, var(--reflective-from) 30%, var(--reflective-to) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom stroke outline for hero backdrop text */
+.text-stroke-lime {
+  -webkit-text-stroke: 1.5px rgba(0, 72, 255, 0.25);
+}
+.dark .text-stroke-lime {
+  -webkit-text-stroke: 2px rgba(204, 255, 0, 0.35);
+}
+
+/* Liquid glass blue text styling for the NAWAS background hero word */
+.liquid-glass-blue-text {
+  background: linear-gradient(180deg, 
+    #ffffff 0%,     /* White specular glare */
+    #60a5fa 12%,    /* Light cyan-blue refraction */
+    #1d4ed8 50%,    /* Vibrant middle blue */
+    #1e3a8a 80%,    /* Deeper water blue */
+    #60a5fa 100%    /* Bottom glass reflection */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.5px rgba(29, 78, 216, 0.4);
+  filter: 
+    drop-shadow(0px 8px 16px rgba(37, 99, 235, 0.35)) 
+    drop-shadow(0px 1px 2px rgba(255, 255, 255, 0.95))
+    drop-shadow(0px -1px 2px rgba(29, 78, 216, 0.3));
+}
+.dark .liquid-glass-blue-text {
+  background: linear-gradient(180deg, 
+    #ffffff 0%,     /* White specular glare */
+    #e1ff5c 15%,    /* Bright neon highlighting */
+    #a3e635 45%,    /* Vivid green-lime */
+    #4d7c0f 80%,    /* Rich darker lime */
+    #ccff00 100%    /* Bottom neon glow */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.5px rgba(204, 255, 0, 0.45);
+  filter: 
+    drop-shadow(0px 8px 24px rgba(204, 255, 0, 0.45)) 
+    drop-shadow(0px 1px 2px rgba(255, 255, 255, 0.8))
+    drop-shadow(0px -1px 2px rgba(204, 255, 0, 0.35));
+}
+
+/* Background mesh grid pattern */
+.grid-overlay {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center center;
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Pulsing bullet animation */
+@keyframes neon-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px var(--primary-lime-glow);
+    background-color: var(--primary-lime);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(204, 255, 0, 0.7);
+    background-color: #e6ff66;
+  }
+}
+
+.neon-active-dot {
+  animation: neon-pulse 2s infinite ease-in-out;
+}
+
+/* ==================== CLEAN LIGHT THEME CLASS OVERRIDES ==================== */
+/* High-end Frosted Glassmorphism for Light Mode components and containers */
+.light .bg-\[\#0a0a0a\],
+.light .bg-\[\#0a0a0a\]\/80,
+.light .bg-\[\#0a0a0a\]\/90,
+.light .bg-\[\#0d0d0d\],
+.light .bg-\[\#0d0d0d\]\/80,
+.light .bg-\[\#0e0e0e\],
+.light .bg-\[\#0f0f0f\],
+.light .bg-\[\#0f0f0f\]\/80,
+.light .bg-\[\#0f0f0f\]\/60,
+.light .bg-\[\#0b0b0b\],
+.light .bg-\[\#080808\]\/70,
+.light .bg-\[\#080808\]\/40,
+.light .bg-\[\#030303\],
+.light .bg-\[\#090909\]\/80,
+.light .bg-\[\#0c0c0c\],
+.light .bg-white\/80,
+.light .bg-white\/90,
+.light .bg-white\/70,
+.light .bg-white\/40,
+.light .glassmorphism {
+  background-color: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(30px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(190%) !important;
+  border-color: rgba(0, 32, 69, 0.14) !important;
+  box-shadow: 0 10px 40px -10px rgba(0, 32, 69, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.9) !important;
+}
+
+.light .hover\:bg-\[\#121212\]:hover {
+  background-color: rgba(0, 32, 69, 0.05) !important;
+}
+
+.light .bg-\[\#111\] {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 32, 69, 0.16) !important;
+  border-width: 1px !important;
+}
+
+.light .bg-\[\#121212\] {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.light .bg-gray-50\/50,
+.light .bg-gray-50,
+.light .bg-gray-100 {
+  background-color: #ffffff !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-color: rgba(0, 32, 69, 0.15) !important;
+  border-width: 1px !important;
+}
+
+/* Specific button rules for benefits/certificates icon containers to be clean solid white */
+.light section .rounded-2xl.bg-gray-100, 
+.light section .w-10.h-10 {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 32, 69, 0.15) !important;
+  border-width: 1px !important;
+}
+
+/* Under Selector 6, the fourth benefit card's icon wrapper has 1.8px border */
+.light section#about div.grid-cols-1 > div:nth-of-type(4) .w-10.h-10 {
+  background-color: #ffffff !important;
+  border-width: 1.8px !important;
+  border-color: rgba(0, 32, 69, 0.2) !important;
+}
+
+/* Custom light selector overrides for badges */
+.light .bg-\[\#06b6d4\]\/10 { background-color: rgba(0, 32, 69, 0.08) !important; }
+.light .bg-\[\#ff4d4d\]\/10 { background-color: rgba(220, 38, 38, 0.08) !important; }
+.light .bg-\[\#a855f7\]\/10 { background-color: rgba(168, 85, 247, 0.08) !important; }
+
+/* Liquid glass pill navigation adjustments and focus-mode rules */
+.light .liquid-glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(224, 231, 254, 0.45) 50%, rgba(255, 255, 255, 0.7) 100%) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+  border-color: rgba(0, 32, 69, 0.22) !important;
+  box-shadow: 0 4px 15px -3px rgba(0, 32, 69, 0.08),
+              inset 0 1px 1.5px rgba(255, 255, 255, 0.95) !important;
+}
+
+.light header nav {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(224, 231, 254, 0.45) 50%, rgba(255, 255, 255, 0.7) 100%) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+  border-color: rgba(0, 32, 69, 0.22) !important;
+}
+
+.light header nav > div {
+  background-color: transparent !important;
+}
+
+.light #theme-toggle-btn,
+.light #lang-toggle-btn,
+.light #mobile-theme-toggle-btn,
+.light #mobile-lang-toggle-btn,
+.light #mobile-menu-toggle {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(219, 234, 254, 0.55) 100%) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-width: 1.5px !important;
+  border-color: rgba(0, 32, 69, 0.25) !important;
+  box-shadow: 0 3px 8px rgba(0, 32, 69, 0.06),
+              inset 0 1px 1px rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Target About Section Numbers Banner */
+.light section#about .mt-16.grid-cols-2 {
+  background-color: #ffffff !important;
+  border-color: #002045 !important;
+  border-width: 1.2px !important;
+  box-shadow: 0 10px 40px -10px rgba(0, 32, 69, 0.08) !important;
+}
+
+/* Stats 2 & 4 numbers become brilliant #002045 matching the banner style request */
+.light section#about .mt-16.grid-cols-2 > div > span {
+  color: #002045 !important;
+}
+
+/* Alignment marks / grid patterns */
+.light .grid-overlay {
+  background-image: 
+    linear-gradient(rgba(0, 32, 69, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 32, 69, 0.015) 1px, transparent 1px);
+}
+
+.light .text-white\/10 { color: rgba(0, 32, 69, 0.06) !important; }
+.light .text-white\/5 { color: rgba(0, 32, 69, 0.03) !important; }
+.light .bg-white\/20 { background-color: rgba(0, 32, 69, 0.08) !important; }
+.light .hover\:bg-white\/40:hover { background-color: rgba(0, 32, 69, 0.15) !important; }
+
+/* Product slider elements & highlight mapping */
+.light .bg-neon-lime {
+  background-color: var(--primary-lime) !important;
+  color: #ffffff !important;
+}
+.light .text-neon-lime {
+  color: var(--primary-lime) !important;
+}
+
+/* Highlight matching for custom catalog and categories */
+.light .bg-\[\#CCFF00\] {
+  background-color: var(--primary-lime) !important;
+  color: #ffffff !important;
+}
+.light .text-\[\#CCFF00\] {
+  color: var(--primary-lime) !important;
+}
+.light .text-\[\#CCFF00\]:hover {
+  color: var(--primary-lime-hover) !important;
+}
+.light .glassmorphism strong {
+  color: #002045 !important;
+}
+
+/* Convert text-black to white when applied on active primary buttons style (blue background) */
+.light .text-black {
+  color: #ffffff !important;
+}
+
+/* Modals overlays backdrops */
+.light .bg-\[\#000000\]\/85,
+.light .bg-black\/85,
+.light .bg-slate-900\/40 {
+  background-color: rgba(9, 26, 68, 0.18) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+/* Form controls customization to stay cloudy/frosted */
+.light input, .light textarea, .light select {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  color: #091a44 !important;
+  border-color: rgba(0, 32, 69, 0.16) !important;
+}
+.light input::placeholder, .light textarea::placeholder {
+  color: #76839d !important;
+}
+.light select option {
+  background-color: #ffffff !important;
+  color: #091a44 !important;
+}
+
+/* Hardcoded title and text color conversions */
+.light .text-\[\#fff\] {
+  color: var(--text-white-raw) !important;
+}
+.light .text-\[\#fff\]\/60 {
+  color: rgba(9, 26, 68, 0.6) !important;
+}
+.light .text-white {
+  color: var(--text-white-raw) !important;
+}
+.light .text-white\/90 {
+  color: rgba(9, 26, 68, 0.9) !important;
+}
+.light .text-white\/80 {
+  color: rgba(9, 26, 68, 0.8) !important;
+}
+.light .text-white\/70 {
+  color: rgba(9, 26, 68, 0.7) !important;
+}
+.light .text-white\/60 {
+  color: rgba(9, 26, 68, 0.6) !important;
+}
+.light .text-white\/55 {
+  color: rgba(9, 26, 68, 0.55) !important;
+}
+.light .text-white\/40 {
+  color: rgba(9, 26, 68, 0.4) !important;
+}
+.light .text-gray-300 {
+  color: var(--text-gray-300-raw) !important;
+}
+.light .text-gray-400 {
+  color: var(--text-gray-400-raw) !important;
+}
+.light .bg-\[\#0c0c0c\] {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Specific overrides requested by focus metadata selectors for clean text contrast in light theme */
+.light div#root > div > section#about > div > div > h2 {
+  color: #222222 !important;
+}
+.light div#root > div > section#about > div > div > h2:hover,
+.light div#root > div > section#about > div > div.group:hover h2 {
+  color: #f59e0b !important;
+  transition: color 0.3s ease !important;
+}
+
+.light div#root > div > section#certificates > div > div > h2 {
+  color: #282828 !important;
+}
+.light div#root > div > section#certificates > div > div > h2:hover,
+.light div#root > div > section#certificates > div > div.group:hover h2 {
+  color: #f59e0b !important;
+  transition: color 0.3s ease !important;
+}
+
+/* Individual certificate card titles (Selectors 4, 5, 6, 7) */
+.light div#root > div > section#certificates > div > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > h3 {
+  color: #1b1b1b !important;
+}
+
+.light div#root > div > section#certificates > div > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > h3 {
+  color: #212121 !important;
+}
+
+.light div#root > div > section#certificates > div > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(2) > h3 {
+  color: #252525 !important;
+}
+
+.light div#root > div > section#certificates > div > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(2) > h3 {
+  color: #262626 !important;
+}
+
+/* Individual benefit card titles (Selectors 8, 9, 10, 11) */
+.light div#root > div > section#about > div > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > h3 {
+  color: #121212 !important;
+}
+
+.light div#root > div > section#about > div > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > h3 {
+  color: #202020 !important;
+}
+
+.light div#root > div > section#about > div > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(2) > h3 {
+  color: #1e1e1e !important;
+}
+
+.light div#root > div > section#about > div > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(2) > h3 {
+  color: #181818 !important;
+}
+
+/* Ensure active navigation link text is always pure white regardless of light/dark theme overrides */
+button.active-nav-btn,
+div#root header nav button.active-nav-btn,
+div#root header nav div button.active-nav-btn,
+button[id^="nav-btn-"].active-nav-btn {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+/* Selector 1: Calculator purchase button hover text to white */
+div#root:nth-of-type(1) > div:nth-of-type(1) > section#products:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(2) > button:nth-of-type(1):hover {
+  color: #ffffff !important;
+}
+
+/* Selector 2: Form submission button hover text and icon to white */
+div#root:nth-of-type(1) > div:nth-of-type(1) > section#contacts:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > form:nth-of-type(1) > button#submit-form-btn:nth-of-type(1):hover,
+div#root:nth-of-type(1) > div:nth-of-type(1) > section#contacts:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > form:nth-of-type(1) > button#submit-form-btn:nth-of-type(1):hover * {
+  color: #ffffff !important;
+}
+
+div#root:nth-of-type(1) > div:nth-of-type(1) > section#contacts:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > form:nth-of-type(1) > button#submit-form-btn:nth-of-type(1) {
+  color: #ffffff !important;
+}
+
+/* Selector 3, 4, 5: Calculator insulation buttons hover transition to yellow */
+div#root section#products div.grid.grid-cols-1.md\:grid-cols-3.gap-3 button:hover,
+div#root section#products div.grid.grid-cols-1.md\:grid-cols-3.gap-3 button:hover * {
+  color: #f59e0b !important;
+  border-color: #f59e0b !important;
+}
+
+
+
