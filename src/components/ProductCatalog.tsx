@@ -122,7 +122,7 @@ export default function ProductCatalog({ lang, onOrder }: ProductCatalogProps) {
     <div className="w-full">
       {/* 1. SECTION HEADLINE AND HERO */}
       <div className="text-center max-w-3xl mx-auto mb-10 px-4 group">
-        <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-[#002045] hover:text-[#f59e0b] group-hover:text-[#f59e0b] mb-4 pb-2 uppercase select-none leading-tight transition-colors duration-300 cursor-default">
+        <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-[#002045] dark:text-[#facc15] hover:text-[#f59e0b] group-hover:text-[#f59e0b] mb-4 pb-2 uppercase select-none leading-tight transition-colors duration-300 cursor-default">
           {t.headline}
         </h2>
         <p className="text-xs sm:text-sm text-gray-400 font-light text-center max-w-lg mx-auto leading-relaxed">

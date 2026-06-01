@@ -28,8 +28,8 @@ export default function HeroConvectionCanvas({ theme = 'dark' }: HeroConvectionC
     const getColors = () => {
       if (theme === 'dark') {
         return {
-          particle: 'rgba(204, 255, 0, 0.85)', // Brighter neon lime for background atmosphere
-          line: 'rgba(204, 255, 0,'
+          particle: 'rgba(250, 204, 21, 0.85)', // Brighter yellow for background atmosphere
+          line: 'rgba(250, 204, 21,'
         };
       } else {
         return {

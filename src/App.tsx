@@ -262,7 +262,7 @@ export default function App() {
           
           {/* Logo Brand */}
           <div className="flex items-center gap-2 sm:gap-5 cursor-pointer group" onClick={() => scrollToSection('home')}>
-            <span className="font-sans font-black text-2xl tracking-widest text-[#002045] group-hover:text-[#f59e0b] hover:text-[#f59e0b] transition-colors duration-300">
+            <span className="font-sans font-black text-2xl tracking-widest text-[#002045] dark:text-[#facc15] group-hover:text-[#f59e0b] hover:text-[#f59e0b] transition-colors duration-300">
               NAWAS
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-neon-lime block animate-ping" />
@@ -427,7 +427,7 @@ export default function App() {
                 {/* Plain backdrop word NAWAS with theme colors and DM Sans font at max weight */}
                 <h1 
                   className="font-dm font-black tracking-widest uppercase leading-none text-center select-none block text-[15vw] md:text-[270px] transition-colors duration-300"
-                  style={{ color: theme === 'dark' ? 'rgba(204, 255, 0, 0.15)' : 'rgba(0, 32, 69, 0.15)' }}
+                  style={{ color: theme === 'dark' ? 'rgba(250, 204, 21, 0.15)' : 'rgba(0, 32, 69, 0.15)' }}
                 >
                   NAWAS
                 </h1>
@@ -466,7 +466,7 @@ export default function App() {
                     className="max-h-[220px] sm:max-h-[300px] md:max-h-[380px] lg:max-h-[440px] w-auto h-auto object-contain filter contrast-105 active:scale-95 transition-all duration-300"
                     style={{
                       filter: `contrast(1.05) drop-shadow(0 18px 25px rgba(0,0,0,0.45)) drop-shadow(0 12px 35px ${
-                        theme === 'dark' ? 'rgba(204, 255, 0, 0.7)' : 'rgba(0, 149, 255, 0.65)'
+                        theme === 'dark' ? 'rgba(250, 204, 21, 0.7)' : 'rgba(0, 149, 255, 0.65)'
                       })`
                     }}
                     referrerPolicy="no-referrer"
@@ -795,10 +795,10 @@ export default function App() {
           
           {/* Header Description */}
           <motion.div style={{ y: yCertificatesTitleOffset }} className="text-center max-w-3xl mx-auto mb-16 transform-gpu will-change-transform group">
-            <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl tracking-tight text-[#002045] hover:text-[#f59e0b] group-hover:text-[#f59e0b] transition-colors duration-300 cursor-default mb-6 uppercase">
+            <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl tracking-tight text-[#002045] dark:text-[#facc15] hover:text-[#f59e0b] group-hover:text-[#f59e0b] transition-colors duration-300 cursor-default mb-6 uppercase">
               {lang === 'RU' ? 'Сертификаты и Стандарты' : 'Certificates & Standards'}
             </h2>
-            <div className="w-16 h-[2px] bg-[#002045] mx-auto mb-6 group-hover:bg-[#f59e0b] transition-colors duration-300" />
+            <div className="w-16 h-[2px] bg-[#002045] dark:bg-[#facc15] mx-auto mb-6 group-hover:bg-[#f59e0b] transition-colors duration-300" />
           </motion.div>
 
           {/* Grid of Certificates - with scroll animation and parallax-feel offsets */}
@@ -919,7 +919,7 @@ export default function App() {
                   {/* Rounded Action Button */}
                   <button
                     onClick={() => setSelectedCertificate(cert)}
-                    className="w-full py-2.5 rounded-full border border-border-dark hover:border-transparent bg-transparent hover:bg-neon-lime hover:text-white dark:hover:text-black hover:font-bold text-xs font-display text-gray-500 dark:text-gray-300 transition-all duration-300 flex items-center justify-center gap-1.5 cursor-pointer"
+                    className="w-full py-2.5 rounded-full border border-border-dark hover:border-transparent bg-transparent hover:bg-neon-lime hover:text-white dark:hover:text-black font-bold text-xs font-display text-gray-500 dark:text-gray-300 transition-all duration-300 flex items-center justify-center gap-1.5 cursor-pointer"
                   >
                     <Eye className="w-3.5 h-3.5" />
                     <span>{lang === 'RU' ? 'Посмотреть копию' : 'View Replica'}</span>
@@ -946,7 +946,7 @@ export default function App() {
           
           {/* Headline header */}
           <motion.div style={{ y: yAboutTitleOffset }} className="text-center max-w-3xl mx-auto mb-16 transform-gpu will-change-transform group">
-            <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl tracking-tight text-[#002045] hover:text-[#f59e0b] group-hover:text-[#f59e0b] transition-colors duration-300 cursor-default mb-4">
+            <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl tracking-tight text-[#002045] dark:text-[#facc15] hover:text-[#f59e0b] group-hover:text-[#f59e0b] transition-colors duration-300 cursor-default mb-4">
               {t.about.title}
             </h2>
             <p className="text-base text-gray-500 dark:text-gray-400 font-light">
@@ -1093,9 +1093,9 @@ export default function App() {
           
           {/* Centered Heading */}
           <div className="text-center max-w-3xl mx-auto mb-16 relative">
-            <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl tracking-widest text-[#002045] dark:text-[#002045] hover:text-[#f59e0b] hover:dark:text-[#f59e0b] group uppercase inline-block relative pb-4 transition-colors duration-300 cursor-default">
+            <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl tracking-widest text-[#002045] dark:text-[#facc15] hover:text-[#f59e0b] hover:dark:text-[#f59e0b] group uppercase inline-block relative pb-4 transition-colors duration-300 cursor-default">
               {lang === 'RU' ? 'КОНТАКТЫ' : 'CONTACTS'}
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-20 h-1.5 bg-[#002045] dark:bg-[#002045] group-hover:bg-[#f59e0b] transition-colors duration-300" />
+              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-20 h-1.5 bg-[#002045] dark:bg-[#facc15] group-hover:bg-[#f59e0b] transition-colors duration-300" />
             </h2>
           </div>
 
@@ -1103,7 +1103,7 @@ export default function App() {
             
             {/* Left box: Feedback form */}
             <motion.div style={{ y: yContactsRightCard }} className="transform-gpu will-change-transform flex flex-col justify-between">
-              <div className="border border-gray-900/10 dark:border-border-dark bg-[#ffffff] dark:bg-[#ffffff] p-8 sm:p-10 rounded-[15px] shadow-xl flex-1 flex flex-col justify-between">
+              <div className="glassmorphism p-8 sm:p-10 rounded-[15px] shadow-xl flex-1 flex flex-col justify-between">
                 
                 <form onSubmit={handleFormSubmit} className="flex flex-col gap-6">
                   {/* Name and Phone side-by-side or stacked */}
@@ -1197,10 +1197,10 @@ export default function App() {
                   <button
                     id="submit-form-btn"
                     type="submit"
-                    className="w-full py-4 bg-[#002045] hover:bg-[#f59e0b] hover:text-white text-white font-display font-bold uppercase text-xs tracking-widest rounded-[10px] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-lg active:scale-[0.98] group"
+                    className="w-full py-4 bg-[#002045] hover:bg-[#003066] text-white hover:text-white dark:bg-[#facc15] dark:hover:bg-[#eab308] dark:text-black dark:hover:text-black font-display font-bold uppercase text-xs tracking-widest rounded-[10px] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-lg active:scale-[0.98] group"
                   >
                     <span className="transition-colors duration-300">{t.contacts.submitBtn}</span>
-                    <Send className="w-4 h-4 text-[#CCFF00] group-hover:text-white transition-colors duration-300" />
+                    <Send className="w-4 h-4 text-white group-hover:text-white/80 dark:text-black dark:group-hover:text-black/80 transition-colors duration-300" />
                   </button>
                 </form>
 
@@ -1211,43 +1211,43 @@ export default function App() {
             <div className="flex flex-col justify-between gap-6">
               
               {/* Info Block - Address */}
-              <div className="border border-gray-900/10 dark:border-border-dark bg-[#ffffff] dark:bg-[#ffffff] rounded-[15px] p-6 flex items-center gap-5 group hover:border-[#f59e0b]/40 transition-all duration-300">
-                <div className="w-14 h-14 bg-[#002045] group-hover:bg-[#f59e0b] rounded-[3px] flex items-center justify-center shrink-0 shadow-sm transition-colors duration-300">
-                  <MapPin className="w-6 h-6 text-[#ffffff] group-hover:text-[#002045] dark:text-[#ffffff] dark:group-hover:text-[#002045] transition-colors duration-300" />
+              <div id="contact-info-address" className="glassmorphism rounded-[15px] p-6 flex items-center gap-5 group transition-all duration-300">
+                <div className="w-14 h-14 bg-[#002045] dark:bg-[#facc15]/10 group-hover:bg-[#f59e0b] dark:group-hover:bg-[#facc15] rounded-[3px] flex items-center justify-center shrink-0 shadow-sm transition-colors duration-300">
+                  <MapPin className="w-6 h-6 text-[#ffffff] dark:text-[#facc15] group-hover:text-white dark:group-hover:text-black transition-colors duration-300" />
                 </div>
                 <div>
                   <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase block mb-1">
                     {t.contacts.addressTitle}
                   </span>
-                  <span className="text-sm font-bold text-[#002045] dark:text-[#002045] group-hover:text-[#f59e0b] group-hover:dark:text-[#f59e0b] block transition-colors duration-300">Tashkent, Uzbekistan</span>
+                  <span className="text-sm font-bold text-[#002045] dark:text-white group-hover:text-[#f59e0b] group-hover:dark:text-[#facc15] block transition-colors duration-300">Tashkent, Uzbekistan</span>
                   <span className="text-xs text-gray-500 dark:text-gray-400 font-medium block mt-0.5">{t.contacts.addressVal}</span>
                 </div>
               </div>
 
               {/* Info Block - Phone */}
-              <div className="border-2 border-gray-900/10 dark:border-border-dark bg-[#ffffff] dark:bg-[#ffffff] rounded-[15px] p-6 flex items-center gap-5 group hover:border-[#f59e0b]/40 transition-all duration-300">
-                <div className="w-14 h-14 bg-[#002045] group-hover:bg-[#f59e0b] rounded-[3px] flex items-center justify-center shrink-0 shadow-sm transition-colors duration-300">
-                  <Phone className="w-6 h-6 text-[#ffffff] group-hover:text-[#002045] dark:text-[#ffffff] dark:group-hover:text-[#002045] transition-colors duration-300" />
+              <div id="contact-info-phone" className="glassmorphism rounded-[15px] p-6 flex items-center gap-5 group transition-all duration-300">
+                <div className="w-14 h-14 bg-[#002045] dark:bg-[#facc15]/10 group-hover:bg-[#f59e0b] dark:group-hover:bg-[#facc15] rounded-[3px] flex items-center justify-center shrink-0 shadow-sm transition-colors duration-300">
+                  <Phone className="w-6 h-6 text-[#ffffff] dark:text-[#facc15] group-hover:text-white dark:group-hover:text-black transition-colors duration-300" />
                 </div>
                 <div>
                   <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase block mb-1">
                     {t.contacts.phoneTitle}
                   </span>
-                  <span className="text-sm font-bold text-[#002045] dark:text-[#002045] group-hover:text-[#f59e0b] group-hover:dark:text-[#f59e0b] block font-mono transition-colors duration-300 font-mono">+998 71 123 45 67</span>
+                  <span className="text-sm font-bold text-[#002045] dark:text-white group-hover:text-[#f59e0b] group-hover:dark:text-[#facc15] block font-mono transition-colors duration-300">+998 71 123 45 67</span>
                   <span className="text-xs text-gray-500 dark:text-gray-400 font-medium block mt-0.5">{lang === 'RU' ? 'Пн-Пт: 09:00 - 18:00' : 'Mon-Fri: 09:00 - 18:00'}</span>
                 </div>
               </div>
 
               {/* Info Block - Email */}
-              <div className="border border-gray-900/10 dark:border-border-dark bg-[#ffffff] dark:bg-[#ffffff] rounded-[15px] p-6 flex items-center gap-5 group hover:border-[#f59e0b]/40 transition-all duration-300">
-                <div className="w-14 h-14 bg-[#002045] group-hover:bg-[#f59e0b] rounded-[3px] flex items-center justify-center shrink-0 shadow-sm transition-colors duration-300">
-                  <Mail className="w-6 h-6 text-[#ffffff] group-hover:text-[#002045] dark:text-[#ffffff] dark:group-hover:text-[#002045] transition-colors duration-300" />
+              <div id="contact-info-email" className="glassmorphism rounded-[15px] p-6 flex items-center gap-5 group transition-all duration-300">
+                <div className="w-14 h-14 bg-[#002045] dark:bg-[#facc15]/10 group-hover:bg-[#f59e0b] dark:group-hover:bg-[#facc15] rounded-[3px] flex items-center justify-center shrink-0 shadow-sm transition-colors duration-300">
+                  <Mail className="w-6 h-6 text-[#ffffff] dark:text-[#facc15] group-hover:text-white dark:group-hover:text-black transition-colors duration-300" />
                 </div>
                 <div>
                   <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase block mb-1">
                     {t.contacts.emailTitle}
                   </span>
-                  <span className="text-sm font-bold text-[#002045] dark:text-[#002045] group-hover:text-[#f59e0b] group-hover:dark:text-[#f59e0b] block font-mono transition-colors duration-300 font-mono">info@nawas.uz</span>
+                  <span className="text-sm font-bold text-[#002045] dark:text-white group-hover:text-[#f59e0b] group-hover:dark:text-[#facc15] block font-mono transition-colors duration-300">info@nawas.uz</span>
                   <span className="text-xs text-gray-500 dark:text-gray-400 font-medium block mt-0.5 font-mono">technical: support@nawas.uz</span>
                 </div>
               </div>
