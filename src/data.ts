@@ -8,7 +8,7 @@ export const RADIATORS: Radiator[] = [
     modelCode: 'Model FS-22-500',
     subtitle: 'Стальной панельный радиатор высокого давления',
     description: 'Изогнутые тонкие грани холодного проката стали с двойной конвекционной рубашкой обеспечивают сочетание высокой теплоотдачи и безупречной минималистичной эстетики.',
-    image: '../src/assets/images/radiator_panel_1779615710019.png',
+    image: '/assets/images/radiator_panel_1779615710019.png',
     accentGlowColor: 'rgba(204, 255, 0, 0.25)',
     price: 'от 7,800 ₽',
     category: 'panel',
