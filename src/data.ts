@@ -1505,85 +1505,28 @@ export const RADIATORS: Radiator[] = [
     }
   },
   {
-    id: 'nws-yg-06',
-    name: 'NWS-YG-06',
-    modelCode: 'NWS-YG-06',
-    subtitle: 'Настенный газовый котёл',
-    description: 'Двухконтурный настенный котёл с интуитивной системой управления и возможностью Wi-Fi подключения.',
-    image: '/assets/products/YG-06.png',
-    accentGlowColor: 'rgba(124, 58, 237, 0.25)',
+    id: 'nws-panel',
+    name: 'NWS-PANEL',
+    modelCode: 'NWS-PANEL',
+    subtitle: 'Панельный радиатор',
+    description: 'Металлический панельный радиатор',
+    image: '/assets/products/PANEL.png',
+    accentGlowColor: 'rgba(239, 68, 68, 0.25)',
     price: 'по запросу',
-    category: 'boiler',
+    category: 'panel',
     specs: {
-      output: 'по запросу',
+      output: '24 кВт',
       pressure: '3 бар (испытательное 5 бар)',
       material: 'Медный теплообменник + нержавеющая сталь AISI 304',
-      dimensions: '06 × 80 × 96 мм',
+      dimensions: '720 × 400 × 340 мм',
       warranty: '5 лет',
-      weightSection: '0.9 кг (моноблок)'
-    }
-  },
-  {
-    id: 'nws-yg-35',
-    name: 'NWS-YG-35',
-    modelCode: 'NWS-YG-35',
-    subtitle: 'Настенный газовый котёл',
-    description: 'Двухконтурный настенный котёл с интуитивной системой управления и возможностью Wi-Fi подключения.',
-    image: '/assets/products/YG-35.png',
-    accentGlowColor: 'rgba(250, 204, 21, 0.25)',
-    price: 'по запросу',
-    category: 'boiler',
-    specs: {
-      output: 'по запросу',
-      pressure: '3 бар (испытательное 5 бар)',
-      material: 'Медный теплообменник + нержавеющая сталь AISI 304',
-      dimensions: '35 × 80 × 80 мм',
-      warranty: '5 лет',
-      weightSection: '0.9 кг (моноблок)'
-    }
-  },
-  {
-    id: 'nws-yg4f',
-    name: 'NWS-YG4F',
-    modelCode: 'NWS-YG4F',
-    subtitle: 'Настенный газовый котёл',
-    description: 'Двухконтурный настенный котёл с интуитивной системой управления и возможностью Wi-Fi подключения.',
-    image: '/assets/products/YG4F.png',
-    accentGlowColor: 'rgba(34, 197, 94, 0.25)',
-    price: 'по запросу',
-    category: 'boiler',
-    specs: {
-      output: 'по запросу',
-      pressure: '3 бар (испытательное 5 бар)',
-      material: 'Медный теплообменник + нержавеющая сталь AISI 304',
-      dimensions: '4 × 80 × 96 мм',
-      warranty: '5 лет',
-      weightSection: '0.9 кг (моноблок)'
-    }
-  },
-  {
-    id: 'nws-yg4y',
-    name: 'NWS-YG4Y',
-    modelCode: 'NWS-YG4Y',
-    subtitle: 'Настенный газовый котёл',
-    description: 'Двухконтурный настенный котёл с интуитивной системой управления и возможностью Wi-Fi подключения.',
-    image: '/assets/products/YG4Y.png',
-    accentGlowColor: 'rgba(6, 182, 212, 0.25)',
-    price: 'по запросу',
-    category: 'boiler',
-    specs: {
-      output: 'по запросу',
-      pressure: '3 бар (испытательное 5 бар)',
-      material: 'Медный теплообменник + нержавеющая сталь AISI 304',
-      dimensions: '4 × 80 × 96 мм',
-      warranty: '5 лет',
-      weightSection: '0.9 кг (моноблок)'
+      weightSection: '10 кг '
     }
   },
   {
     id: 'nws-boiler',
-    name: 'NWS-壁挂炉',
-    modelCode: 'NWS-壁挂炉',
+    name: 'NWS-BOILER',
+    modelCode: 'NWS-BOILER',
     subtitle: 'Настенный газовый котёл',
     description: 'Двухконтурный настенный котёл с интуитивной системой управления и возможностью Wi-Fi подключения.',
     image: '/assets/products/boiler.png',
@@ -1608,6 +1551,7 @@ const RADIATOR_BY_ID: Record<string, Radiator> = Object.fromEntries(
 export const HERO_RADIATORS: Radiator[] = [
   RADIATOR_BY_ID['nws-b-500a6'],   // bimetal
   RADIATOR_BY_ID['nws-o-500c2'],   // aluminum
+  RADIATOR_BY_ID['nws-panel'],     // panel
   RADIATOR_BY_ID['nws-boiler']     // boiler (壁挂炉)
 ].filter(Boolean);
 
