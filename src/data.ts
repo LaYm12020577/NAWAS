@@ -1,160 +1,1615 @@
 import { Radiator } from './types.ts';
 
-// Radiator Assets (pointing to we generated images)
+// Product catalog generated from FactoryOS specs + 产品图片/ folder.
+// Name = model code. Real specs where FactoryOS data exists; derived otherwise.
 export const RADIATORS: Radiator[] = [
   {
-    id: 'flat-panel',
-    name: 'NAWAS Flat Steel 22',
-    modelCode: 'Model FS-22-500',
-    subtitle: 'Стальной панельный радиатор высокого давления',
-    description: 'Изогнутые тонкие грани холодного проката стали с двойной конвекционной рубашкой обеспечивают сочетание высокой теплоотдачи и безупречной минималистичной эстетики.',
-    image: '/assets/images/radiator_panel_1779615710019.png',
+    id: 'nws-aco-600c',
+    name: 'NWS-ACO-600C',
+    modelCode: 'NWS-ACO-600C',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/ACO-600C.png',
     accentGlowColor: 'rgba(250, 204, 21, 0.25)',
-    price: 'от 7,800 ₽',
-    category: 'panel',
-    specs: {
-      output: '1850 Вт',
-      pressure: '10 бар (испытательное 15 бар)',
-      material: 'Сталь холодного проката (1.25 мм)',
-      dimensions: '500 × 1000 × 100 мм',
-      warranty: '10 лет',
-      weightSection: '22.4 кг (моноблок)'
-    }
-  },
-  {
-    id: 'sectional-bimetal',
-    name: 'NAWAS Bimetal Pro',
-    modelCode: 'Model BP-500/10',
-    subtitle: 'Биметаллический секционный радиатор',
-    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает колоссальные гидроудары центрального отопления.',
-    image: '/assets/images/radiator_classic_1779615731280.png',
-    accentGlowColor: 'rgba(34, 197, 94, 0.25)',
-    price: '920 ₽ / секция',
-    category: 'bimetal',
-    specs: {
-      output: '195 Вт на секцию',
-      pressure: '35 бар (испытательное 52 бар)',
-      material: 'Стальной сердечник + Алюминиевый сплав',
-      dimensions: '560 × 80 × 90 мм (одна секция)',
-      warranty: '15 лет',
-      weightSection: '1.75 кг / секция'
-    }
-  },
-  {
-    id: 'designer-anthracite',
-    name: 'NAWAS Anthracite Slim',
-    modelCode: 'Model AS-600',
-    subtitle: 'Дизайнерский радиатор монолитного типа',
-    description: 'Анодированный алюминий с глубоким матовым покрытием цвета "Антрацит". Создан для дизайнерских ремонтов и установки перед панорамным остеклением.',
-    image: '/assets/images/radiator_design_1779615754574.png',
-    accentGlowColor: 'rgba(6, 182, 212, 0.25)',
-    price: 'от 14,500 ₽',
+    price: 'по запросу',
     category: 'aluminum',
     specs: {
-      output: '2100 Вт',
-      pressure: '16 бар (испытательное 24 бар)',
-      material: 'Авиационный алюминий с защитным нано-покрытием',
-      dimensions: '600 × 1200 × 80 мм',
-      warranty: '20 лет',
-      weightSection: '16.8 кг (моноблок)'
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '600 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
     }
   },
   {
-    id: 'smart-boiler',
-    name: 'NAWAS GazEco 24',
-    modelCode: 'Model GE-250',
-    subtitle: 'Энергоэффективный газовый котёл',
-    description: 'Двухконтурный настенный котёл высокой мощности со встроенной интуитивной системой погодной компенсации и возможностью Wi-Fi управления.',
-    image: '/assets/images/radiator_design_1779615754574.png',
+    id: 'nws-b-200c',
+    name: 'NWS-B-200C',
+    modelCode: 'NWS-B-200C',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/B-200C.png',
+    accentGlowColor: 'rgba(34, 197, 94, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '200 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-b-350a3',
+    name: 'NWS-B-350A3',
+    modelCode: 'NWS-B-350A3',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/B-350A3.png',
+    accentGlowColor: 'rgba(6, 182, 212, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '350 × 80 × 80 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-b-350a4',
+    name: 'NWS-B-350A4',
+    modelCode: 'NWS-B-350A4',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/B-350A4.png',
     accentGlowColor: 'rgba(239, 68, 68, 0.25)',
-    price: 'от 48,000 ₽',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '350 × 80 × 80 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-b-350a5',
+    name: 'NWS-B-350A5',
+    modelCode: 'NWS-B-350A5',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/B-350A5.png',
+    accentGlowColor: 'rgba(234, 179, 8, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '350 × 80 × 80 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-b-350c4',
+    name: 'NWS-B-350C4',
+    modelCode: 'NWS-B-350C4',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/B-350C4.png',
+    accentGlowColor: 'rgba(16, 185, 129, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '350 × 80 × 80 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-b-500a3',
+    name: 'NWS-B-500A3',
+    modelCode: 'NWS-B-500A3',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/B-500A3.png',
+    accentGlowColor: 'rgba(99, 102, 241, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-b-500a4',
+    name: 'NWS-B-500A4',
+    modelCode: 'NWS-B-500A4',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/B-500A4.png',
+    accentGlowColor: 'rgba(124, 58, 237, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-b-500a5',
+    name: 'NWS-B-500A5',
+    modelCode: 'NWS-B-500A5',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/B-500A5.png',
+    accentGlowColor: 'rgba(250, 204, 21, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-b-500a6',
+    name: 'NWS-B-500A6',
+    modelCode: 'NWS-B-500A6',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/B-500A6.png',
+    accentGlowColor: 'rgba(34, 197, 94, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-b-500a7',
+    name: 'NWS-B-500A7',
+    modelCode: 'NWS-B-500A7',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/B-500A7.png',
+    accentGlowColor: 'rgba(6, 182, 212, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-b-500a8',
+    name: 'NWS-B-500A8',
+    modelCode: 'NWS-B-500A8',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/B-500A8.png',
+    accentGlowColor: 'rgba(239, 68, 68, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-b-500b',
+    name: 'NWS-B-500B',
+    modelCode: 'NWS-B-500B',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/B-500B.png',
+    accentGlowColor: 'rgba(234, 179, 8, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-b-500c',
+    name: 'NWS-B-500C',
+    modelCode: 'NWS-B-500C',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/B-500C.png',
+    accentGlowColor: 'rgba(16, 185, 129, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-b-500c2',
+    name: 'NWS-B-500C2',
+    modelCode: 'NWS-B-500C2',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/B-500C2.png',
+    accentGlowColor: 'rgba(99, 102, 241, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-b-500c4',
+    name: 'NWS-B-500C4',
+    modelCode: 'NWS-B-500C4',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/B-500C4.png',
+    accentGlowColor: 'rgba(124, 58, 237, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-b-500d',
+    name: 'NWS-B-500D',
+    modelCode: 'NWS-B-500D',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/B-500D.png',
+    accentGlowColor: 'rgba(250, 204, 21, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bg-500a',
+    name: 'NWS-BG-500A',
+    modelCode: 'NWS-BG-500A',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BG-500A.png',
+    accentGlowColor: 'rgba(34, 197, 94, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bk-500c',
+    name: 'NWS-BK-500C',
+    modelCode: 'NWS-BK-500C',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BK-500C.png',
+    accentGlowColor: 'rgba(6, 182, 212, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bm-500c',
+    name: 'NWS-BM-500C',
+    modelCode: 'NWS-BM-500C',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BM-500C.png',
+    accentGlowColor: 'rgba(239, 68, 68, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bo-200e',
+    name: 'NWS-BO-200E',
+    modelCode: 'NWS-BO-200E',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BO-200E.png',
+    accentGlowColor: 'rgba(234, 179, 8, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '200 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bo-300c',
+    name: 'NWS-BO-300C',
+    modelCode: 'NWS-BO-300C',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BO-300C.png',
+    accentGlowColor: 'rgba(16, 185, 129, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '300 × 80 × 80 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bo-500aks',
+    name: 'NWS-BO-500AKS',
+    modelCode: 'NWS-BO-500AKS',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BO-500AKS.png',
+    accentGlowColor: 'rgba(99, 102, 241, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bo-500b',
+    name: 'NWS-BO-500B',
+    modelCode: 'NWS-BO-500B',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BO-500B.png',
+    accentGlowColor: 'rgba(124, 58, 237, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bo-500bq',
+    name: 'NWS-BO-500BQ',
+    modelCode: 'NWS-BO-500BQ',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BO-500BQ.png',
+    accentGlowColor: 'rgba(250, 204, 21, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bo-500c',
+    name: 'NWS-BO-500C',
+    modelCode: 'NWS-BO-500C',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BO-500C.png',
+    accentGlowColor: 'rgba(34, 197, 94, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bo-500ch',
+    name: 'NWS-BO-500CH',
+    modelCode: 'NWS-BO-500CH',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BO-500CH.png',
+    accentGlowColor: 'rgba(6, 182, 212, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bo-500cl',
+    name: 'NWS-BO-500CL',
+    modelCode: 'NWS-BO-500CL',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BO-500CL.png',
+    accentGlowColor: 'rgba(239, 68, 68, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bo-500cq',
+    name: 'NWS-BO-500CQ',
+    modelCode: 'NWS-BO-500CQ',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BO-500CQ.png',
+    accentGlowColor: 'rgba(234, 179, 8, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bo-500do',
+    name: 'NWS-BO-500DO',
+    modelCode: 'NWS-BO-500DO',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BO-500DO.png',
+    accentGlowColor: 'rgba(16, 185, 129, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bo-500dv',
+    name: 'NWS-BO-500DV',
+    modelCode: 'NWS-BO-500DV',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BO-500DV.png',
+    accentGlowColor: 'rgba(99, 102, 241, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bo-500m',
+    name: 'NWS-BO-500M',
+    modelCode: 'NWS-BO-500M',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BO-500M.png',
+    accentGlowColor: 'rgba(124, 58, 237, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bo-500o3',
+    name: 'NWS-BO-500O3',
+    modelCode: 'NWS-BO-500O3',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BO-500O3.png',
+    accentGlowColor: 'rgba(250, 204, 21, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bo-500q2',
+    name: 'NWS-BO-500Q2',
+    modelCode: 'NWS-BO-500Q2',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BO-500Q2.png',
+    accentGlowColor: 'rgba(34, 197, 94, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bt-350c',
+    name: 'NWS-BT-350C',
+    modelCode: 'NWS-BT-350C',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BT-350C.png',
+    accentGlowColor: 'rgba(6, 182, 212, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '350 × 80 × 80 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bt-500c',
+    name: 'NWS-BT-500C',
+    modelCode: 'NWS-BT-500C',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BT-500C.png',
+    accentGlowColor: 'rgba(239, 68, 68, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bt-500c5',
+    name: 'NWS-BT-500C5',
+    modelCode: 'NWS-BT-500C5',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BT-500C5.png',
+    accentGlowColor: 'rgba(234, 179, 8, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-bt-500c6',
+    name: 'NWS-BT-500C6',
+    modelCode: 'NWS-BT-500C6',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/BT-500C6.png',
+    accentGlowColor: 'rgba(16, 185, 129, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-co-300b',
+    name: 'NWS-CO-300B',
+    modelCode: 'NWS-CO-300B',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/CO-300B.png',
+    accentGlowColor: 'rgba(99, 102, 241, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '300 × 80 × 80 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-co-350a4',
+    name: 'NWS-CO-350A4',
+    modelCode: 'NWS-CO-350A4',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/CO-350A4.png',
+    accentGlowColor: 'rgba(124, 58, 237, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '350 × 80 × 80 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-co-350a5',
+    name: 'NWS-CO-350A5',
+    modelCode: 'NWS-CO-350A5',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/CO-350A5.png',
+    accentGlowColor: 'rgba(250, 204, 21, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '350 × 80 × 80 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-co-500a3',
+    name: 'NWS-CO-500A3',
+    modelCode: 'NWS-CO-500A3',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/CO-500A3.png',
+    accentGlowColor: 'rgba(34, 197, 94, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-co-500a4',
+    name: 'NWS-CO-500A4',
+    modelCode: 'NWS-CO-500A4',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/CO-500A4.png',
+    accentGlowColor: 'rgba(6, 182, 212, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-co-500a5',
+    name: 'NWS-CO-500A5',
+    modelCode: 'NWS-CO-500A5',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/CO-500A5.png',
+    accentGlowColor: 'rgba(239, 68, 68, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-co-500a6',
+    name: 'NWS-CO-500A6',
+    modelCode: 'NWS-CO-500A6',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/CO-500A6.png',
+    accentGlowColor: 'rgba(234, 179, 8, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-co-500a7',
+    name: 'NWS-CO-500A7',
+    modelCode: 'NWS-CO-500A7',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/CO-500A7.png',
+    accentGlowColor: 'rgba(16, 185, 129, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-co-500a8',
+    name: 'NWS-CO-500A8',
+    modelCode: 'NWS-CO-500A8',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/CO-500A8.png',
+    accentGlowColor: 'rgba(99, 102, 241, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-co-500b',
+    name: 'NWS-CO-500B',
+    modelCode: 'NWS-CO-500B',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/CO-500B.png',
+    accentGlowColor: 'rgba(124, 58, 237, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-co-500m',
+    name: 'NWS-CO-500M',
+    modelCode: 'NWS-CO-500M',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/CO-500M.png',
+    accentGlowColor: 'rgba(250, 204, 21, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-co-600b',
+    name: 'NWS-CO-600B',
+    modelCode: 'NWS-CO-600B',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/CO-600B.png',
+    accentGlowColor: 'rgba(34, 197, 94, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '600 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-d-200c',
+    name: 'NWS-D-200C',
+    modelCode: 'NWS-D-200C',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/D-200C.png',
+    accentGlowColor: 'rgba(6, 182, 212, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '200 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-d-350c',
+    name: 'NWS-D-350C',
+    modelCode: 'NWS-D-350C',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/D-350C.png',
+    accentGlowColor: 'rgba(239, 68, 68, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '350 × 80 × 80 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-d-500c2',
+    name: 'NWS-D-500C2',
+    modelCode: 'NWS-D-500C2',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/D-500C2.png',
+    accentGlowColor: 'rgba(234, 179, 8, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-f-350c2',
+    name: 'NWS-F-350C2',
+    modelCode: 'NWS-F-350C2',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/F-350C2.png',
+    accentGlowColor: 'rgba(16, 185, 129, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '350 × 80 × 80 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-f-500c',
+    name: 'NWS-F-500C',
+    modelCode: 'NWS-F-500C',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/F-500C.png',
+    accentGlowColor: 'rgba(99, 102, 241, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-g-500c',
+    name: 'NWS-G-500C',
+    modelCode: 'NWS-G-500C',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/G-500C.png',
+    accentGlowColor: 'rgba(124, 58, 237, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-h-500c',
+    name: 'NWS-H-500C',
+    modelCode: 'NWS-H-500C',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/H-500C.png',
+    accentGlowColor: 'rgba(250, 204, 21, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-kj-600c',
+    name: 'NWS-KJ-600C',
+    modelCode: 'NWS-KJ-600C',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/KJ-600C.png',
+    accentGlowColor: 'rgba(34, 197, 94, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '600 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-o-500c2',
+    name: 'NWS-O-500C2',
+    modelCode: 'NWS-O-500C2',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/O-500C2.png',
+    accentGlowColor: 'rgba(6, 182, 212, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-o-500d',
+    name: 'NWS-O-500D',
+    modelCode: 'NWS-O-500D',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/O-500D.png',
+    accentGlowColor: 'rgba(239, 68, 68, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-q-500c',
+    name: 'NWS-Q-500C',
+    modelCode: 'NWS-Q-500C',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/Q-500C.png',
+    accentGlowColor: 'rgba(234, 179, 8, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-s-500c',
+    name: 'NWS-S-500C',
+    modelCode: 'NWS-S-500C',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/S-500C.png',
+    accentGlowColor: 'rgba(16, 185, 129, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-sl-500c',
+    name: 'NWS-SL-500C',
+    modelCode: 'NWS-SL-500C',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/SL-500C.png',
+    accentGlowColor: 'rgba(99, 102, 241, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-st-500c',
+    name: 'NWS-ST-500C',
+    modelCode: 'NWS-ST-500C',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/ST-500C.png',
+    accentGlowColor: 'rgba(124, 58, 237, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-t-350c2',
+    name: 'NWS-T-350C2',
+    modelCode: 'NWS-T-350C2',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/T-350C2.png',
+    accentGlowColor: 'rgba(250, 204, 21, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '350 × 80 × 80 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-t-350c3',
+    name: 'NWS-T-350C3',
+    modelCode: 'NWS-T-350C3',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/T-350C3.png',
+    accentGlowColor: 'rgba(34, 197, 94, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '350 × 80 × 80 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-t-500c',
+    name: 'NWS-T-500C',
+    modelCode: 'NWS-T-500C',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/T-500C.png',
+    accentGlowColor: 'rgba(6, 182, 212, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-t-500c2',
+    name: 'NWS-T-500C2',
+    modelCode: 'NWS-T-500C2',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/T-500C2.png',
+    accentGlowColor: 'rgba(239, 68, 68, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-t-500c3',
+    name: 'NWS-T-500C3',
+    modelCode: 'NWS-T-500C3',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/T-500C3.png',
+    accentGlowColor: 'rgba(234, 179, 8, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-t-500c4',
+    name: 'NWS-T-500C4',
+    modelCode: 'NWS-T-500C4',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/T-500C4.png',
+    accentGlowColor: 'rgba(16, 185, 129, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-t-500c5',
+    name: 'NWS-T-500C5',
+    modelCode: 'NWS-T-500C5',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/T-500C5.png',
+    accentGlowColor: 'rgba(99, 102, 241, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-t-500c6',
+    name: 'NWS-T-500C6',
+    modelCode: 'NWS-T-500C6',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/T-500C6.png',
+    accentGlowColor: 'rgba(124, 58, 237, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '1.0 кг / секция'
+    }
+  },
+  {
+    id: 'nws-t-500cc',
+    name: 'NWS-T-500CC',
+    modelCode: 'NWS-T-500CC',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/T-500CC.png',
+    accentGlowColor: 'rgba(250, 204, 21, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-te-350bm',
+    name: 'NWS-TE-350BM',
+    modelCode: 'NWS-TE-350BM',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/TE-350BM.png',
+    accentGlowColor: 'rgba(34, 197, 94, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '350 × 80 × 80 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-te-350e',
+    name: 'NWS-TE-350E',
+    modelCode: 'NWS-TE-350E',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/TE-350E.png',
+    accentGlowColor: 'rgba(6, 182, 212, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '350 × 80 × 80 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-te-500a',
+    name: 'NWS-TE-500A',
+    modelCode: 'NWS-TE-500A',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/TE-500A.png',
+    accentGlowColor: 'rgba(239, 68, 68, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-te-500b',
+    name: 'NWS-TE-500B',
+    modelCode: 'NWS-TE-500B',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/TE-500B.png',
+    accentGlowColor: 'rgba(234, 179, 8, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-te-500bm',
+    name: 'NWS-TE-500BM',
+    modelCode: 'NWS-TE-500BM',
+    subtitle: 'Биметаллический секционный радиатор',
+    description: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+    image: '/assets/products/TE-500BM.png',
+    accentGlowColor: 'rgba(16, 185, 129, 0.25)',
+    price: 'по запросу',
+    category: 'bimetal',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Стальной сердечник + Алюминиевый сплав',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-te-500e',
+    name: 'NWS-TE-500E',
+    modelCode: 'NWS-TE-500E',
+    subtitle: 'Алюминиевый секционный радиатор',
+    description: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+    image: '/assets/products/TE-500E.png',
+    accentGlowColor: 'rgba(99, 102, 241, 0.25)',
+    price: 'по запросу',
+    category: 'aluminum',
+    specs: {
+      output: 'по запросу',
+      pressure: '35 бар (испытательное 52 бар)',
+      material: 'Алюминиевый сплав высокой очистки',
+      dimensions: '500 × 80 × 96 мм',
+      warranty: '15 лет',
+      weightSection: '0.9 кг / секция'
+    }
+  },
+  {
+    id: 'nws-yg-06',
+    name: 'NWS-YG-06',
+    modelCode: 'NWS-YG-06',
+    subtitle: 'Настенный газовый котёл',
+    description: 'Двухконтурный настенный котёл с интуитивной системой управления и возможностью Wi-Fi подключения.',
+    image: '/assets/products/YG-06.png',
+    accentGlowColor: 'rgba(124, 58, 237, 0.25)',
+    price: 'по запросу',
+    category: 'boiler',
+    specs: {
+      output: 'по запросу',
+      pressure: '3 бар (испытательное 5 бар)',
+      material: 'Медный теплообменник + нержавеющая сталь AISI 304',
+      dimensions: '06 × 80 × 96 мм',
+      warranty: '5 лет',
+      weightSection: '0.9 кг (моноблок)'
+    }
+  },
+  {
+    id: 'nws-yg-35',
+    name: 'NWS-YG-35',
+    modelCode: 'NWS-YG-35',
+    subtitle: 'Настенный газовый котёл',
+    description: 'Двухконтурный настенный котёл с интуитивной системой управления и возможностью Wi-Fi подключения.',
+    image: '/assets/products/YG-35.png',
+    accentGlowColor: 'rgba(250, 204, 21, 0.25)',
+    price: 'по запросу',
+    category: 'boiler',
+    specs: {
+      output: 'по запросу',
+      pressure: '3 бар (испытательное 5 бар)',
+      material: 'Медный теплообменник + нержавеющая сталь AISI 304',
+      dimensions: '35 × 80 × 80 мм',
+      warranty: '5 лет',
+      weightSection: '0.9 кг (моноблок)'
+    }
+  },
+  {
+    id: 'nws-yg4f',
+    name: 'NWS-YG4F',
+    modelCode: 'NWS-YG4F',
+    subtitle: 'Настенный газовый котёл',
+    description: 'Двухконтурный настенный котёл с интуитивной системой управления и возможностью Wi-Fi подключения.',
+    image: '/assets/products/YG4F.png',
+    accentGlowColor: 'rgba(34, 197, 94, 0.25)',
+    price: 'по запросу',
+    category: 'boiler',
+    specs: {
+      output: 'по запросу',
+      pressure: '3 бар (испытательное 5 бар)',
+      material: 'Медный теплообменник + нержавеющая сталь AISI 304',
+      dimensions: '4 × 80 × 96 мм',
+      warranty: '5 лет',
+      weightSection: '0.9 кг (моноблок)'
+    }
+  },
+  {
+    id: 'nws-yg4y',
+    name: 'NWS-YG4Y',
+    modelCode: 'NWS-YG4Y',
+    subtitle: 'Настенный газовый котёл',
+    description: 'Двухконтурный настенный котёл с интуитивной системой управления и возможностью Wi-Fi подключения.',
+    image: '/assets/products/YG4Y.png',
+    accentGlowColor: 'rgba(6, 182, 212, 0.25)',
+    price: 'по запросу',
+    category: 'boiler',
+    specs: {
+      output: 'по запросу',
+      pressure: '3 бар (испытательное 5 бар)',
+      material: 'Медный теплообменник + нержавеющая сталь AISI 304',
+      dimensions: '4 × 80 × 96 мм',
+      warranty: '5 лет',
+      weightSection: '0.9 кг (моноблок)'
+    }
+  },
+  {
+    id: 'nws-boiler',
+    name: 'NWS-壁挂炉',
+    modelCode: 'NWS-壁挂炉',
+    subtitle: 'Настенный газовый котёл',
+    description: 'Двухконтурный настенный котёл с интуитивной системой управления и возможностью Wi-Fi подключения.',
+    image: '/assets/products/boiler.png',
+    accentGlowColor: 'rgba(239, 68, 68, 0.25)',
+    price: 'по запросу',
     category: 'boiler',
     specs: {
       output: '24 кВт',
       pressure: '3 бар (испытательное 5 бар)',
-      material: 'Медный первичный теплообменник + Сверхпрочные эко-материалы',
+      material: 'Медный теплообменник + нержавеющая сталь AISI 304',
       dimensions: '720 × 400 × 340 мм',
       warranty: '5 лет',
       weightSection: '32.5 кг (моноблок)'
     }
-  },
-  {
-    id: 'bimetal-force',
-    name: 'NAWAS Bimetal Force 350',
-    modelCode: 'Model BF-350/8',
-    subtitle: 'Суперпрочный низкопрофильный прибор',
-    description: 'Уменьшенное межосевое расстояние радиатора идеально подходит для остеклений с низким уровнем подоконного пространства.',
-    image: '/assets/images/radiator_classic_1779615731280.png',
-    accentGlowColor: 'rgba(234, 179, 8, 0.25)',
-    price: '890 ₽ / секция',
-    category: 'bimetal',
-    specs: {
-      output: '142 Вт на секцию',
-      pressure: '35 бар (испытательное 52/60 бар)',
-      material: 'Стальной бесшовный сердечник + Алюминий',
-      dimensions: '410 × 80 × 80 мм (одна секция)',
-      warranty: '15 лет',
-      weightSection: '1.40 кг / секция'
-    }
-  },
-  {
-    id: 'alum-neo',
-    name: 'NAWAS Alum Neo 500',
-    modelCode: 'Model AN-500/10',
-    subtitle: 'Усиленный литой отопительный радиатор',
-    description: 'Аэродинамическая форма внутренних ребер увеличивает естественный конвективный поток воздуха в комнате на 22% для сверхбыстрого обогрева.',
-    image: '/assets/images/radiator_classic_1779615731280.png',
-    accentGlowColor: 'rgba(16, 185, 129, 0.25)',
-    price: '820 ₽ / секция',
-    category: 'aluminum',
-    specs: {
-      output: '185 Вт на секцию',
-      pressure: '20 бар (испытательное 30 бар)',
-      material: 'Премиальный алюминиевый сплав высокой очистки',
-      dimensions: '570 × 80 × 85 мм (одна секция)',
-      warranty: '10 лет',
-      weightSection: '1.25 кг / секция'
-    }
-  },
-  {
-    id: 'steel-compact',
-    name: 'NAWAS Steel Compact 21',
-    modelCode: 'Model SC-21-300',
-    subtitle: 'Многопрофильный радиатор малой высоты',
-    description: 'Встроенный высокоточный терморегулирующий клапан позволяет плавно контролировать тепловую мощность для идеального микроклимата.',
-    image: '/assets/images/radiator_panel_1779615710019.png',
-    accentGlowColor: 'rgba(99, 102, 241, 0.25)',
-    price: 'от 6,900 ₽',
-    category: 'panel',
-    specs: {
-      output: '1240 Вт',
-      pressure: '10 бар (испытательное 15 бар)',
-      material: 'Холоднокатаная сталь марки DC01 (1.20 мм)',
-      dimensions: '300 × 1100 × 75 мм',
-      warranty: '10 лет',
-      weightSection: '14.5 кг (моноблок)'
-    }
-  },
-  {
-    id: 'boiler-volt',
-    name: 'NAWAS Volt Smart 12',
-    modelCode: 'Model VS-120',
-    subtitle: 'Электрический микропроцессорный котёл',
-    description: 'Компактный электрический котёл с бесшумным симисторным переключением фаз, встроенным расширительным баком и циркуляционным насосом.',
-    image: '/assets/images/radiator_design_1779615754574.png',
-    accentGlowColor: 'rgba(124, 58, 237, 0.25)',
-    price: 'от 34,500 ₽',
-    category: 'boiler',
-    specs: {
-      output: '12 кВт',
-      pressure: '3 бар (испытательное 4.5 бар)',
-      material: 'Нержавеющая сталь марки AISI 304, литой блок',
-      dimensions: '620 × 380 × 220 мм',
-      warranty: '5 лет',
-      weightSection: '21.0 кг (моноблок)'
-    }
   }
 ];
+
+// Curated hero slides — one representative product per category.
+const RADIATOR_BY_ID: Record<string, Radiator> = Object.fromEntries(
+  RADIATORS.map(r => [r.id, r])
+);
+export const HERO_RADIATORS: Radiator[] = [
+  RADIATOR_BY_ID['nws-b-500a6'],   // bimetal
+  RADIATOR_BY_ID['nws-o-500c2'],   // aluminum
+  RADIATOR_BY_ID['nws-boiler']     // boiler (壁挂炉)
+].filter(Boolean);
 
 export const TRANSLATIONS = {
   RU: {
@@ -215,7 +1670,7 @@ export const TRANSLATIONS = {
       submitBtn: 'Заказать консультацию',
       successMsg: 'Ваша заявка успешно отправлена! Наш инженер свяжется с вами в течение 15 минут.',
       addressTitle: 'Шоурум и офис',
-      addressVal: 'Москва, Кутузовский проспект, 36а, стр. 2',
+      addressVal: 'обл. Андижан, Андижанский р-н, махалля Терактагии, 124',
       phoneTitle: 'Горячая линия',
       emailTitle: 'Отдел продаж'
     }

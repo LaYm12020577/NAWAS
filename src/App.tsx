@@ -27,10 +27,11 @@ import {
   Sun,
   Moon
 } from 'lucide-react';
-import { RADIATORS, TRANSLATIONS } from './data.ts';
+import { RADIATORS, HERO_RADIATORS, TRANSLATIONS } from './data.ts';
 import { Radiator, SectionType } from './types.ts';
 import ProductCatalog from './components/ProductCatalog.tsx';
 import HeroConvectionCanvas from './components/HeroConvectionCanvas.tsx';
+import ModelCombobox from './components/ModelCombobox.tsx';
 
 export default function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
@@ -74,7 +75,7 @@ export default function App() {
     phone: '',
     email: '',
     message: '',
-    model: RADIATORS[0].name,
+    model: '',
     calculatedSections: 14,
     calculatedPower: 2600
   });
@@ -162,19 +163,11 @@ export default function App() {
     if (!isIntroComplete) return;
     
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % RADIATORS.length);
+      setCurrentSlide((prev) => (prev + 1) % HERO_RADIATORS.length);
     }, 8000); // 8 seconds per slide for peaceful viewing
     
     return () => clearInterval(interval);
   }, [isIntroComplete]);
-
-  // Sync selected model in registration form
-  useEffect(() => {
-    setFormData(prev => ({
-      ...prev,
-      model: RADIATORS[currentSlide].name
-    }));
-  }, [currentSlide]);
 
   // Thermic calculations formula based on standard European building standards EN 442
   const maxTempNormalFactor = 40; // Watts per cubic meter standard requirements
@@ -196,11 +189,11 @@ export default function App() {
   };
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % RADIATORS.length);
+    setCurrentSlide((prev) => (prev + 1) % HERO_RADIATORS.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + RADIATORS.length) % RADIATORS.length);
+    setCurrentSlide((prev) => (prev - 1 + HERO_RADIATORS.length) % HERO_RADIATORS.length);
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
@@ -217,7 +210,9 @@ export default function App() {
   const triggerOrderModal = (radiatorName?: string) => {
     setFormData(prev => ({
       ...prev,
-      model: radiatorName || RADIATORS[currentSlide].name,
+      // Only pre-fill when a specific product was chosen; leave empty
+      // otherwise so the field isn't coupled to the hero carousel.
+      model: radiatorName || '',
       calculatedPower,
       calculatedSections
     }));
@@ -225,7 +220,7 @@ export default function App() {
     setShowOrderModal(true);
   };
 
-  const radiator = RADIATORS[currentSlide];
+  const radiator = HERO_RADIATORS[currentSlide];
 
   return (
     <div className="min-h-screen bg-dark-bg text-gray-200 relative grid-overlay selection:bg-neon-lime selection:text-black">
@@ -555,7 +550,7 @@ export default function App() {
               </button>
 
               <div className="flex items-center gap-2.5 px-1">
-                {RADIATORS.map((rad, idx) => (
+                {HERO_RADIATORS.map((rad, idx) => (
                   <button
                     key={rad.id}
                     onClick={() => setCurrentSlide(idx)}
@@ -1155,16 +1150,13 @@ export default function App() {
                       <label htmlFor="form-model" className="text-xs font-bold text-gray-400 font-sans uppercase tracking-wider">
                         {lang === 'RU' ? 'ИНТЕРЕСУЮЩАЯ МОДЕЛЬ' : 'INQUIRED MODEL'}
                       </label>
-                      <select
+                      <ModelCombobox
                         id="form-model"
                         value={formData.model}
-                        onChange={(e) => setFormData({...formData, model: e.target.value})}
-                        className="w-full bg-[#f8fafc]/90 dark:bg-[#111] border border-gray-200/50 dark:border-border-dark px-4 py-3.5 rounded-[10px] focus:border-[#002045] dark:focus:border-[#CCFF00] outline-none text-sm text-gray-900 dark:text-gray-300 font-normal transition-colors"
-                      >
-                        {RADIATORS.map(r => (
-                          <option key={r.id} value={r.name} className="bg-white dark:bg-[#121212]">{r.name}</option>
-                        ))}
-                      </select>
+                        options={RADIATORS.map(r => r.name)}
+                        onChange={(val) => setFormData({...formData, model: val})}
+                        inputClassName="w-full bg-[#f8fafc]/90 dark:bg-[#111] border border-gray-200/50 dark:border-border-dark px-4 py-3.5 rounded-[10px] focus:border-[#002045] dark:focus:border-[#CCFF00] outline-none text-sm text-gray-900 dark:text-gray-300 font-normal transition-colors"
+                      />
                     </div>
                   </div>
 
@@ -1219,7 +1211,7 @@ export default function App() {
                   <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase block mb-1">
                     {t.contacts.addressTitle}
                   </span>
-                  <span className="text-sm font-bold text-[#002045] dark:text-white group-hover:text-[#f59e0b] group-hover:dark:text-[#facc15] block transition-colors duration-300">Tashkent, Uzbekistan</span>
+                  <span className="text-sm font-bold text-[#002045] dark:text-white group-hover:text-[#f59e0b] group-hover:dark:text-[#facc15] block transition-colors duration-300">Andijan, Uzbekistan</span>
                   <span className="text-xs text-gray-500 dark:text-gray-400 font-medium block mt-0.5">{t.contacts.addressVal}</span>
                 </div>
               </div>
@@ -1233,7 +1225,7 @@ export default function App() {
                   <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase block mb-1">
                     {t.contacts.phoneTitle}
                   </span>
-                  <span className="text-sm font-bold text-[#002045] dark:text-white group-hover:text-[#f59e0b] group-hover:dark:text-[#facc15] block font-mono transition-colors duration-300">+998 71 123 45 67</span>
+                  <span className="text-sm font-bold text-[#002045] dark:text-white group-hover:text-[#f59e0b] group-hover:dark:text-[#facc15] block font-mono transition-colors duration-300">+998 50 071 48 02</span>
                   <span className="text-xs text-gray-500 dark:text-gray-400 font-medium block mt-0.5">{lang === 'RU' ? 'Пн-Пт: 09:00 - 18:00' : 'Mon-Fri: 09:00 - 18:00'}</span>
                 </div>
               </div>
@@ -1247,9 +1239,9 @@ export default function App() {
                   <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase block mb-1">
                     {t.contacts.emailTitle}
                   </span>
-                  <span className="text-sm font-bold text-[#002045] dark:text-white group-hover:text-[#f59e0b] group-hover:dark:text-[#facc15] block font-mono transition-colors duration-300">info@nawas.uz</span>
+                  <span className="text-sm font-bold text-[#002045] dark:text-white group-hover:text-[#f59e0b] group-hover:dark:text-[#facc15] block font-mono transition-colors duration-300">sales@nawas.uz</span>
                   <span className="text-xs text-gray-500 dark:text-gray-400 font-medium block mt-0.5 font-mono">technical: support@nawas.uz</span>
-                </div>
+                </div>  
               </div>
 
               {/* Notice quote warning block */}

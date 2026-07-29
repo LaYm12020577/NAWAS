@@ -27,7 +27,7 @@ export default function ProductCatalog({ lang, onOrder }: ProductCatalogProps) {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [selectedRadiator, setSelectedRadiator] = useState<Radiator | null>(null);
 
-  const itemsPerPage = 2; // Supports 4 pages for 'all' (8 items total)
+  const itemsPerPage = 8; // With an 84-item catalog this gives ~11 pages
 
   // Labels based on selected language
   const translations = {
