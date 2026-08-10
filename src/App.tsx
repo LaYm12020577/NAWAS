@@ -32,6 +32,7 @@ import { Radiator, SectionType } from './types.ts';
 import ProductCatalog from './components/ProductCatalog.tsx';
 import HeroConvectionCanvas from './components/HeroConvectionCanvas.tsx';
 import ModelCombobox from './components/ModelCombobox.tsx';
+import { sendContactToTelegram } from './telegram.ts';
 
 export default function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
@@ -80,6 +81,8 @@ export default function App() {
     calculatedPower: 2600
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
   const [selectedCertificate, setSelectedCertificate] = useState<any>(null);
 
   // References for scrolling support
@@ -196,15 +199,36 @@ export default function App() {
     setCurrentSlide((prev) => (prev - 1 + HERO_RADIATORS.length) % HERO_RADIATORS.length);
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate API request smoothly
-    setFormData(prev => ({
-      ...prev,
-      calculatedPower,
-      calculatedSections
-    }));
-    setFormSubmitted(true);
+    setIsSubmitting(true);
+    setSubmitError(false);
+
+    try {
+      await sendContactToTelegram(
+        {
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          model: formData.model,
+          message: formData.message,
+          calculatedPower,
+          calculatedSections,
+        },
+        lang
+      );
+      setFormData(prev => ({
+        ...prev,
+        calculatedPower,
+        calculatedSections
+      }));
+      setFormSubmitted(true);
+    } catch (error) {
+      console.error('Ошибка отправки в Telegram:', error);
+      setSubmitError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const triggerOrderModal = (radiatorName?: string) => {
@@ -217,6 +241,7 @@ export default function App() {
       calculatedSections
     }));
     setFormSubmitted(false);
+    setSubmitError(false);
     setShowOrderModal(true);
   };
 
@@ -1185,14 +1210,36 @@ export default function App() {
                     </motion.div>
                   )}
 
+                  {/* Form Submission Error Message */}
+                  {submitError && (
+                    <motion.div
+                      initial={{ scale: 0.95, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      className="p-4 border border-red-500/20 bg-red-500/5 text-red-600 dark:text-red-400 rounded-[3px] text-xs flex items-start gap-2.5 font-light"
+                    >
+                      <span className="shrink-0 mt-0.5">⚠</span>
+                      <span>{t.contacts.errorMsg}</span>
+                    </motion.div>
+                  )}
+
                   {/* Submission Trigger Button */}
                   <button
                     id="submit-form-btn"
                     type="submit"
-                    className="w-full py-4 bg-[#002045] hover:bg-[#003066] text-white hover:text-white dark:bg-[#facc15] dark:hover:bg-[#eab308] dark:text-black dark:hover:text-black font-display font-bold uppercase text-xs tracking-widest rounded-[10px] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-lg active:scale-[0.98] group"
+                    disabled={isSubmitting}
+                    className="w-full py-4 bg-[#002045] hover:bg-[#003066] text-white hover:text-white dark:bg-[#facc15] dark:hover:bg-[#eab308] dark:text-black dark:hover:text-black font-display font-bold uppercase text-xs tracking-widest rounded-[10px] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-lg active:scale-[0.98] group disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    <span className="transition-colors duration-300">{t.contacts.submitBtn}</span>
-                    <Send className="w-4 h-4 text-white group-hover:text-white/80 dark:text-black dark:group-hover:text-black/80 transition-colors duration-300" />
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white dark:border-black/30 dark:border-t-black rounded-full animate-spin" />
+                        <span>{t.contacts.sendingBtn}</span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="transition-colors duration-300">{t.contacts.submitBtn}</span>
+                        <Send className="w-4 h-4 text-white group-hover:text-white/80 dark:text-black dark:group-hover:text-black/80 transition-colors duration-300" />
+                      </>
+                    )}
                   </button>
                 </form>
 
@@ -1406,10 +1453,24 @@ export default function App() {
                   <button
                     id="modal-submit-btn"
                     type="submit"
-                    className="w-full mt-2 py-3.5 bg-neon-lime hover:bg-neon-lime-hover text-black font-display font-black text-xs uppercase tracking-widest rounded-[3px] transition-all"
+                    disabled={isSubmitting}
+                    className="w-full mt-2 py-3.5 bg-neon-lime hover:bg-neon-lime-hover text-black font-display font-black text-xs uppercase tracking-widest rounded-[3px] transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
-                    {t.ctaOrder}
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                        <span>{t.contacts.sendingBtn}</span>
+                      </>
+                    ) : (
+                      t.ctaOrder
+                    )}
                   </button>
+                  {submitError && (
+                    <div className="mt-2 p-3 border border-red-500/20 bg-red-500/5 text-red-400 rounded-[3px] text-[11px] flex items-start gap-2 font-light">
+                      <span className="shrink-0">⚠</span>
+                      <span>{t.contacts.errorMsg}</span>
+                    </div>
+                  )}
                 </form>
               ) : (
                 <motion.div
