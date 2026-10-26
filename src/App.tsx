@@ -327,7 +327,7 @@ export default function App() {
             </button>
 
             {/* Theme Toggle Button */}
-            <button 
+            {/* <button 
               id="theme-toggle-btn"
               onClick={() => setTheme(prev => (prev === 'light' ? 'dark' : 'light'))}
               className="flex items-center justify-center w-10 h-10 transition-all duration-300 rounded-full cursor-pointer liquid-glass-button text-gray-700 dark:text-gray-200"
@@ -338,7 +338,7 @@ export default function App() {
               ) : (
                 <Sun className="w-4.5 h-4.5 text-neon-lime" />
               )}
-            </button>
+            </button> */}
 
             {/* CTA button, neon styled */}
             <button
@@ -1272,7 +1272,7 @@ export default function App() {
                   <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase block mb-1">
                     {t.contacts.phoneTitle}
                   </span>
-                  <span className="text-sm font-bold text-[#002045] dark:text-white group-hover:text-[#f59e0b] group-hover:dark:text-[#facc15] block font-mono transition-colors duration-300">+998 50 071 48 02</span>
+                  <span className="text-sm font-bold text-[#002045] dark:text-white group-hover:text-[#f59e0b] group-hover:dark:text-[#facc15] block font-mono transition-colors duration-300">Отдел продаж: +998 93 880 12 30</span>
                   <span className="text-xs text-gray-500 dark:text-gray-400 font-medium block mt-0.5">{lang === 'RU' ? 'Пн-Пт: 09:00 - 18:00' : 'Mon-Fri: 09:00 - 18:00'}</span>
                 </div>
               </div>
@@ -1333,9 +1333,20 @@ export default function App() {
           </div>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8e8e93] font-light">
-            <p>© {new Date().getFullYear()} {t.brand}. {lang === 'RU' ? 'Все права защищены.' : 'All rights reserved.'}</p>
+            <p>© {new Date().getFullYear()} Waaqt Studio. {lang === 'RU' ? 'Все права защищены.' : 'All rights reserved.'}</p>
             <p className="flex items-center gap-2.5">
-              <span>{lang === 'RU' ? 'Разработано в соответствии с концепцией ИИ-студии' : 'Crafted complying with Gemini UI/UX concepts.'}</span>
+              <span className="footer-credit">
+                {lang === 'RU' ? 'Разработано студией' : 'Designed & developed by'}{' '}
+                  <a 
+                    href="https://waaqt.uz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="waaqt-link"
+                  >
+                    Waaqt
+                  </a>
+                  {lang === 'RU' ? '' : ' Studio'}
+              </span>
               <span className="w-1.5 h-1.5 rounded-full bg-neon-lime block animate-pulse" />
             </p>
           </div>

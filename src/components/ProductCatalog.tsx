@@ -20,7 +20,7 @@ interface ProductCatalogProps {
   onOrder: (modelName: string) => void;
 }
 
-type CategoryType = 'all' | 'bimetal' | 'aluminum' | 'panel' | 'boiler';
+type CategoryType = 'all' | 'bimetal' | 'aluminum' | 'panel' | 'boiler' |  'fancoil' |  'pump' | 'other';
 
 export default function ProductCatalog({ lang, onOrder }: ProductCatalogProps) {
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>('all');
@@ -40,7 +40,10 @@ export default function ProductCatalog({ lang, onOrder }: ProductCatalogProps) {
         bimetal: 'Биметалл',
         aluminum: 'Алюминий',
         panel: 'Панель',
-        boiler: 'Котёл'
+        fancoil: 'Фанкойл',
+        boiler: 'Котёл',
+        pump: 'Насос',
+        other: 'Другое'
       },
       showSpecs: 'Характеристики',
       order: 'Заказать',
@@ -53,7 +56,34 @@ export default function ProductCatalog({ lang, onOrder }: ProductCatalogProps) {
       dimensions: 'Размеры',
       warranty: 'Гарантия',
       weight: 'Вес секции/блока',
-      page: 'Свяжитесь с нами для детального подбора'
+      page: 'Свяжитесь с нами для детального подбора',
+      subtitles: {
+        subtAlu: 'Алюминиевый секционный радиатор',
+        subtBim: 'Биметаллический секционный радиатор',
+        subtPan: 'Панельный радиатор',
+        subtFan: 'Фанкойл',
+        subtBoil: 'Настенный газовый котёл',
+        subtPump: 'Циркуляционный насос',
+        subtRack: 'Полотенцесушитель',
+        subtAcc: 'Рем-комплект',
+      },
+      descriptions: {
+        descAlu: 'Аэродинамическая форма внутренних рёбер увеличивает естественный конвективный поток воздуха, обеспечивая быстрый прогрев помещения.',
+        descBim: 'Стальной внутренний коллектор полностью изолирует теплоноситель от алюминиевого корпуса. Выдерживает гидроудары центрального отопления.',
+        descPan: 'Стальной панельный радиатор: быстрый нагрев, высокая теплоотдача, компактный корпус.',
+        descFan: 'Фанкойл: охлаждение и обогрев, тихая работа, точный контроль температуры.',
+        descBoil: 'Настенный газовый котёл: высокий КПД, компактный монтаж, надёжная автоматика.',
+        descPump: 'Циркуляционный насос: тихая работа, низкое энергопотребление, долгий срок службы.',
+        descRack: 'Полотенцесушитель: быстрый нагрев, эффективная сушка, стойкость к коррозии.',
+        descAcc: 'Рем-комплект: полный набор запчастей для быстрой установки радиаторов.',
+      },
+      matearials: {
+        matAlu: '	Алюминиевый сплав высокой очистки',
+        matBim: 'Стальной сердечник + Алюминиевый корпус',
+        matPan: 'Сталь',
+      },
+      onRequest: 'По запросу',
+      warrantyYears: '5 лет'
     },
     EN: {
       sectionTitle: 'PRODUCTS',
@@ -64,7 +94,10 @@ export default function ProductCatalog({ lang, onOrder }: ProductCatalogProps) {
         bimetal: 'Bimetal',
         aluminum: 'Aluminum',
         panel: 'Panel',
-        boiler: 'Boiler'
+        fancoil: 'Fancoil',
+        boiler: 'Boiler',
+        pump: 'Pump',
+        other: 'Other'
       },
       showSpecs: 'Specifications',
       order: 'Order Now',
@@ -77,7 +110,34 @@ export default function ProductCatalog({ lang, onOrder }: ProductCatalogProps) {
       dimensions: 'Dimensions',
       warranty: 'Warranty',
       weight: 'Unit weight',
-      page: 'Contact us for a tailored architectural calculation'
+      page: 'Contact us for a tailored architectural calculation',
+      subtitles:{  
+        subtAlu: 'Aluminum Sectional Radiator',
+        subtBim: 'Bimetal Sectional Radiator',
+        subtPan: 'Panel Radiator',
+        subtFan: 'Fancoil',
+        subtBoil: 'Wall-mounted Gas Boiler',
+        subtPump: 'Circulation Pump',
+        subtRack: 'Heated Towel Rail',
+        subtAcc: 'Accessory',
+      },
+      descriptions: {
+        descAlu: 'Aerodynamic shape of the internal fins increases natural convective airflow, providing rapid room heating.',
+        descBim: 'The steel inner collector completely isolates the coolant from the aluminum body. It withstands central heating water hammer.',
+        descPan: 'Steel panel radiator: fast heat-up, high heat output, slim design.',
+        descFan: 'Fancoil unit: cooling and heating, quiet operation, precise temperature control.',
+        descBoil: 'Wall-mounted gas boiler: high efficiency, compact installation, reliable controls.',
+        descPump: 'Circulation pump: silent operation, low power consumption, long service life.',
+        descRack: 'Heated towel rail: fast heat-up, efficient drying, corrosion-resistant build.',
+        descAcc: 'Accessory kit: complete set of parts for quick radiator installation.',
+      },
+      matearials: {
+        matAlu: 'High-purity aluminum alloy',
+        matBim: 'Steel inner collector + aluminum body',
+        matPan: 'Steel',
+      },
+      onRequest: 'On request',
+      warrantyYears: '5 years',
     }
   };
 
@@ -133,7 +193,7 @@ export default function ProductCatalog({ lang, onOrder }: ProductCatalogProps) {
       {/* 2. OVER-CARDS LIQUID GLASS NAVIGATION TAB */}
       <div className="w-full flex justify-start sm:justify-center mb-10 pt-0 overflow-x-auto no-scrollbar px-4">
         <div className="liquid-glass p-1.5 rounded-[29px] flex flex-row items-center gap-1 sm:gap-1.5 mx-auto shrink-0">
-          {(['all', 'bimetal', 'aluminum', 'panel', 'boiler'] as CategoryType[]).map((cat) => {
+          {(['all', 'bimetal', 'aluminum', 'panel', 'boiler', 'fancoil', 'pump', 'other'] as CategoryType[]).map((cat) => {
             const isActive = selectedCategory === cat;
             return (
               <button
@@ -192,7 +252,7 @@ export default function ProductCatalog({ lang, onOrder }: ProductCatalogProps) {
                       {radiator.name}
                     </h3>
                     <p className="text-xs text-gray-400 font-light mt-1 line-clamp-2">
-                      {lang === 'RU' ? radiator.subtitle : radiator.subtitle.replace(/Стальной|Биметаллический|Анодированный/, '')}
+                      {t.subtitles[radiator.subtitle]}
                     </p>
                   </div>
                 </div>
@@ -313,7 +373,7 @@ export default function ProductCatalog({ lang, onOrder }: ProductCatalogProps) {
                     {selectedRadiator.name}
                   </h3>
                   <p className="text-xs text-gray-400 font-light mt-1">
-                    {selectedRadiator.subtitle}
+                    {t.subtitles[selectedRadiator.subtitle]}
                   </p>
                 </div>
 
@@ -328,7 +388,7 @@ export default function ProductCatalog({ lang, onOrder }: ProductCatalogProps) {
                     />
                   </div>
                   <p className="md:col-span-8 text-sm text-gray-400 font-light leading-relaxed">
-                    {selectedRadiator.description}
+                    {t.descriptions[selectedRadiator.description]}
                   </p>
                 </div>
 
@@ -344,7 +404,7 @@ export default function ProductCatalog({ lang, onOrder }: ProductCatalogProps) {
                       <span className="text-[10px] text-gray-400 uppercase tracking-wider font-mono mb-0.5">{t.output}</span>
                       <span className="text-sm font-semibold text-white flex items-center gap-1.5">
                         <Flame className="w-4 h-4 text-orange-500" />
-                        {selectedRadiator.specs.output}
+                        {selectedRadiator.specs.output === null ? t.onRequest : selectedRadiator.specs.output}
                       </span>
                     </div>
 
@@ -352,28 +412,28 @@ export default function ProductCatalog({ lang, onOrder }: ProductCatalogProps) {
                       <span className="text-[10px] text-gray-400 uppercase tracking-wider font-mono mb-0.5">{t.pressure}</span>
                       <span className="text-sm font-semibold text-white flex items-center gap-1.5">
                         <Shield className="w-4 h-4 text-emerald-500" />
-                        {selectedRadiator.specs.pressure}
+                        {selectedRadiator.specs.pressure === null ? t.onRequest : selectedRadiator.specs.pressure}
                       </span>
                     </div>
 
                     <div className="flex flex-col border-b border-border-dark pb-2">
                       <span className="text-[10px] text-gray-400 uppercase tracking-wider font-mono mb-0.5">{t.material}</span>
-                      <span className="text-sm font-semibold text-white">{selectedRadiator.specs.material}</span>
+                      <span className="text-sm font-semibold text-white">{selectedRadiator.specs.material === null ? t.onRequest : t.matearials[selectedRadiator.specs.material]}</span>
                     </div>
 
                     <div className="flex flex-col border-b border-border-dark pb-2">
                       <span className="text-[10px] text-gray-400 uppercase tracking-wider font-mono mb-0.5">{t.dimensions}</span>
-                      <span className="text-sm font-semibold text-white">{selectedRadiator.specs.dimensions}</span>
+                      <span className="text-sm font-semibold text-white">{selectedRadiator.specs.dimensions === null ? t.onRequest : `${selectedRadiator.specs.dimensions} ${lang === 'RU' ? 'мм' : 'mm'}`}</span>
                     </div>
 
                     <div className="flex flex-col border-b border-border-dark pb-2">
                       <span className="text-[10px] text-gray-400 uppercase tracking-wider font-mono mb-0.5">{t.warranty}</span>
-                      <span className="text-sm font-semibold text-green-400">{selectedRadiator.specs.warranty}</span>
+                      <span className="text-sm font-semibold text-green-400">{t.warrantyYears}</span>
                     </div>
 
                     <div className="flex flex-col border-b border-border-dark pb-2">
                       <span className="text-[10px] text-gray-400 uppercase tracking-wider font-mono mb-0.5">{t.weight}</span>
-                      <span className="text-sm font-semibold text-white">{selectedRadiator.specs.weightSection || 'Н/Д'}</span>
+                      <span className="text-sm font-semibold text-white">{selectedRadiator.specs.weightSection || t.onRequest}</span>
                     </div>
                   </div>
                 </div>

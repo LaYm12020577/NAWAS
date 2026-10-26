@@ -724,6 +724,23 @@ div#root section#products div.grid.grid-cols-1.md\:grid-cols-3.gap-3 button:hove
   border-color: #f59e0b !important;
 }
 
+.footer-credit {
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+.waaqt-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+  transition: opacity 0.2s ease;
+}
+
+.waaqt-link:hover {
+  color: var(--primary-lime);
+  opacity: 0.85;
+}
+
 /* ==================== CLEAN DARK THEME CLASS OVERRIDES ==================== */
 /* Custom class overrides to convert hardcoded [#CCFF00] or other bright green values to beautiful gold-yellow */
 .dark .bg-neon-lime {

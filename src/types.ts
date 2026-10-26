@@ -3,7 +3,6 @@ export interface RadiatorSpecs {
   pressure: string;    // max test pressure or working pressure
   material: string;    // material description
   dimensions: string;  // height, width, depth details
-  warranty: string;    // years of warranty
   weightSection?: string; // weight details
 }
 
@@ -17,7 +16,7 @@ export interface Radiator {
   accentGlowColor: string; // Tailwind glow or custom hex shadow
   specs: RadiatorSpecs;
   price: string;
-  category: 'bimetal' | 'aluminum' | 'panel' | 'boiler';
+  category: 'bimetal' | 'aluminum' | 'panel' | 'boiler' | 'fancoil' | 'pump' | 'other'; 
 }
 
 export type SectionType = 'home' | 'about' | 'products' | 'certificates' | 'contacts';
